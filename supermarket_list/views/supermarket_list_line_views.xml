@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- View supermarket.list.line Search -->
+    <record id="view_supermarket_list_line_search" model="ir.ui.view">
+        <field name="name">view.supermarket.list.line.search</field>
+        <field name="model">supermarket.list.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="list_id"/>
+                <field name="product_id"/>
+                <filter name="is_purchased" string="Purchased" domain="[('is_purchased', '=', True)]"/>
+                <filter name="isnt_purchased" string="Not Purchased" domain="[('is_purchased', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
     <!-- View supermarket.list.line View List -->
     <record id="view_supermarket_list_line_list" model="ir.ui.view">
         <field name="name">view.supermarket.list.line.list</field>
@@ -10,7 +24,7 @@
                 <field name="list_id"/>
                 <field name="product_id"/>
                 <field name="quantity"/>
-                <field name="is_purchased" widget="boolean_toggle"/>
+                <field name="is_purchased"/>
             </list>
         </field>
     </record>
@@ -26,7 +40,6 @@
                         <field name="list_id"/>
                         <field name="product_id"/>
                         <field name="quantity"/>
-                        <field name="is_purchased" widget="boolean_toggle"/>
                     </group>
                 </sheet>
                 <!-- Chatter -->
@@ -49,12 +62,5 @@
             </p>
         </field>
     </record>
-
-    <menuitem
-        id="menu_supermarket_list_line"
-        name="Supermarket List Line"
-        action="action_supermarket_list_line"
-        parent="supermarket_list_root_menu"
-        sequence="20"/>
 
 </odoo>
