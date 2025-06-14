@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_add_product_list_view_form" model="ir.ui.view">
+        <field name="name">Add product list</field>
+        <field name="model">wizard.add.product.list</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="list_id" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="product_id" required="1"/>                            
+                        </group>
+                        <group>
+                            <field name="quantity" required="1"/>                            
+                        </group>
+                    </group>
+                    <footer>
+                        <div>
+                            <button 
+                                name="execute_add_product" 
+                                string="Add product"
+                                type="object"
+                                class="oe_highlight"
+                            />
+                            <button special="cancel" string="Close" class="oe_link"/>
+                        </div>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

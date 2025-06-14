@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="supermarket_list_root_menu"
+        name="Supermarket List"
+        web_icon="supermarket_list,static/description/supermarket_icon.png"
+        sequence="-1"
+    />
+
+</odoo>
