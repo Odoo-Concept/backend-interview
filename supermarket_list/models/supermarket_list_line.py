@@ -48,14 +48,6 @@ class SupermarketListLine(models.Model):
                     "You do not have permission to change the purchased state of this item."
                 )
 
-    def action_mark_as_purchased(self):
-        """
-        Mark this product as purchased (only if not already marked).
-        """
-        self.ensure_one()
-        if not self.is_purchased:
-            self.is_purchased = True
-
     def unlink(self):
         """
         Override unlink to restrict deletion to the responsible user only.
