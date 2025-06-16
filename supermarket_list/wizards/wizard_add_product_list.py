@@ -20,7 +20,6 @@ class WizardAddProductList(models.TransientModel):
     product_id = fields.Many2one(
         comodel_name='product.template',
         string='Product',
-        required=True,
         help="Product to be added to the list."
     )
 
