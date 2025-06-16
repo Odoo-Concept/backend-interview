@@ -48,15 +48,13 @@ jobs:
           - 5432:5432
     env:
       OCA_ENABLE_CHECKLOG_ODOO: "1"
-      ADDONS_PATH: /opt/odoo/addons,/opt/enterprise
+      ADDONS_PATH: /opt/odoo/addons
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Discovering
         run: whoami ; pwd ; ls -la
-      - name: Set up Odoo Enterprise
-        run: git -C /opt/ clone --depth=1 --branch=$ODOO_VERSION https://${{ secrets.ODOO_ENTERPRISE_TOKEN }}@github.com/odoo/enterprise.git
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Check licenses
