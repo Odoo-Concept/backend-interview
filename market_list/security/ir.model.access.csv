@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_market_list_user,market.list.user,model_market_list,base.group_user,1,1,1,1
+access_market_list_item_user,market.list.product.user,model_market_list_product,base.group_user,1,1,1,1
