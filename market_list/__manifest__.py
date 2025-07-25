@@ -5,9 +5,7 @@
     "summary": "Módulo integrador para el Proyecto",
     "author": "Erick Birbe <ebirbe@odooconcept.com>, Odoo Concept",
     "website": "https://odooconcept.com",
-    "depends": [
-        "base","product"
-    ],
+    "depends": ["base", "product"],
     "data": [
         "security/ir.model.access.csv",
         "views/market_list_views.xml",
