@@ -1,0 +1,204 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jose_manuel_pizarro_interview
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-31 02:36+0000\n"
+"PO-Revision-Date: 2025-07-31 02:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jose_manuel_pizarro_interview
+#. odoo-python
+#: code:addons/jose_manuel_pizarro_interview/models/grocery_list.py:0
+msgid "- %(name)s"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__can_edit_is_purchased
+msgid "Can Edit Is Purchased"
+msgstr "Puede editar Comprado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields.selection,name:jose_manuel_pizarro_interview.selection__grocery_list__state__done
+msgid "Completed"
+msgstr "Completada"
+
+#. module: jose_manuel_pizarro_interview
+#: model_terms:ir.actions.act_window,help:jose_manuel_pizarro_interview.grocery_list_action
+msgid "Create a new grocery list<br>"
+msgstr "Crea una nueva lista de supermercado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__create_uid
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__create_date
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__display_name
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields.selection,name:jose_manuel_pizarro_interview.selection__grocery_list__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: jose_manuel_pizarro_interview
+#: model_terms:ir.ui.view,arch_db:jose_manuel_pizarro_interview.grocery_list_form_view
+msgid "Finish Grocery List"
+msgstr "Finalizar"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__grocery_list_id
+msgid "Grocery"
+msgstr "Supermercado"
+
+#. module: jose_manuel_pizarro_interview
+#: model_terms:ir.ui.view,arch_db:jose_manuel_pizarro_interview.grocery_list_form_view
+msgid "Grocery Lines"
+msgstr "Items"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.actions.act_window,name:jose_manuel_pizarro_interview.grocery_list_action
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__grocery_lines
+#: model:ir.ui.menu,name:jose_manuel_pizarro_interview.menu_grocery_list_tree
+#: model_terms:ir.ui.view,arch_db:jose_manuel_pizarro_interview.grocery_list_form_view
+#: model_terms:ir.ui.view,arch_db:jose_manuel_pizarro_interview.grocery_list_tree
+msgid "Grocery List"
+msgstr "Lista de supermercado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.ui.menu,name:jose_manuel_pizarro_interview.menu_grocery_list
+msgid "Grocery List App"
+msgstr "Lista de Supermercado App"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__name
+msgid "Grocery List Name"
+msgstr "Nombre"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__id
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__id
+msgid "ID"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields.selection,name:jose_manuel_pizarro_interview.selection__grocery_list__state__in_progress
+msgid "In Progress"
+msgstr "En Progreso"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__is_purchased
+msgid "Is Purchased"
+msgstr "Comprado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__write_uid
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__write_date
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__user_responsible_id
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__user_responsible_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: jose_manuel_pizarro_interview
+#: model_terms:ir.ui.view,arch_db:jose_manuel_pizarro_interview.grocery_list_form_view
+msgid "Start Purchase"
+msgstr "Habilitar Uso"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__state
+msgid "State"
+msgstr "Estado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_list__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: jose_manuel_pizarro_interview
+#: model_terms:ir.actions.act_window,help:jose_manuel_pizarro_interview.grocery_list_action
+msgid "This is the grocery list app"
+msgstr "Esta es la Lista de Supermercado"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model.fields,field_description:jose_manuel_pizarro_interview.field_grocery_line__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unidad de Medida"
+
+#. module: jose_manuel_pizarro_interview
+#. odoo-python
+#: code:addons/jose_manuel_pizarro_interview/models/grocery_list.py:0
+msgid ""
+"You need to purchase all the items in order to complete the grocery list, "
+"remaining items:"
+msgstr "Debe marcar todos los items como comprado para completar la lista de supermercado. "
+"Items restantes:"
+
+#. module: jose_manuel_pizarro_interview
+#. odoo-python
+#: code:addons/jose_manuel_pizarro_interview/models/grocery_list.py:0
+msgid ""
+"Your grocery list is empty. Add items in order to change the state to In "
+"Progress"
+msgstr "Su lista de supermercado esta vacia, Añada items para poder cambiar el estado a En Progreso"
+
+#. module: jose_manuel_pizarro_interview
+#. odoo-python
+#: code:addons/jose_manuel_pizarro_interview/models/grocery_list.py:0
+msgid ""
+"Your grocery list must be in Draft state in order to change to In Progress "
+"State"
+msgstr "Su lista de supermercado debe estar en Borrador para cambiar a En progreso"
+
+#. module: jose_manuel_pizarro_interview
+#. odoo-python
+#: code:addons/jose_manuel_pizarro_interview/models/grocery_list.py:0
+msgid "Your grocery list must be in Progress state in order to complete it"
+msgstr "Su lista de supermercado debe estar En Progreso para pasar a Completada"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model,name:jose_manuel_pizarro_interview.model_grocery_line
+msgid "grocery.line"
+msgstr "Item de lista"
+
+#. module: jose_manuel_pizarro_interview
+#: model:ir.model,name:jose_manuel_pizarro_interview.model_grocery_list
+msgid "grocery.list"
+msgstr "Lista de supermercado"
