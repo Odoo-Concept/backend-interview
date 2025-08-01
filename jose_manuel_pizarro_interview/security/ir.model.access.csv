@@ -1,5 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_grocery_list,grocery.list,model_grocery_list,base.group_user,1,1,1,1
 access_grocery_line,grocery.line,model_grocery_line,base.group_user,1,1,1,1
-
-
