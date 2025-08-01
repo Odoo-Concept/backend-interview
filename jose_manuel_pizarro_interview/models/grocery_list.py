@@ -10,9 +10,11 @@ GROCERY_LIST_STATE = [
 
 class GroceryList(models.Model):
     _name = 'grocery.list'
+    _description = 'Grocery List'
 
     name = fields.Char(string='Name', copy=False)
-    user_responsible_id = fields.Many2one('res.users', string='Responsible',default=lambda self: self.env.user,readonly=True)
+    user_responsible_id = fields.Many2one('res.users', string='Responsible',
+                                          default=lambda self: self.env.user,readonly=True)
     state = fields.Selection(
         selection=GROCERY_LIST_STATE,
         string="Status",
