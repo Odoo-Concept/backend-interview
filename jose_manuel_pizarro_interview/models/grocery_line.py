@@ -10,7 +10,10 @@ class GroceryLine(models.Model):
         comodel_name="uom.uom",
         string="Unit of Measure",
         compute="_compute_product_uom",
-        store=True, readonly=False, precompute=True)
+        store=True,
+        readonly=False,
+        precompute=True,
+    )
     quantity = fields.Float(required=True)
     is_purchased = fields.Boolean(copy=False)
     can_edit_is_purchased = fields.Boolean(compute="_compute_can_edit_is_purchased")
@@ -19,7 +22,7 @@ class GroceryLine(models.Model):
     state = fields.Selection(related="grocery_list_id.state")
     # computed methods
 
-    @api.depends("user_responsible_id","state")
+    @api.depends("user_responsible_id", "state")
     def _compute_can_edit_is_purchased(self):
         for line in self:
             user_have_access = line.user_responsible_id.id == self.env.user.id
