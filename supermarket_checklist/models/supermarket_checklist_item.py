@@ -10,7 +10,7 @@ class SupermarketChecklistItem(models.Model):
     product_id = fields.Many2one('supermarket.product', string='Producto', required=True)
     product_description = fields.Text(related='product_id.description')
     quantity = fields.Integer(string='Cantidad', required=True)
-    bought = fields.Boolean(string='Comprado', default=False)
+    purchased = fields.Boolean(string='Comprado', default=False)
     checklist_id = fields.Many2one('supermarket.checklist', string='Lista de Supermercado', required=True, ondelete="cascade")
 
 
@@ -21,6 +21,10 @@ class SupermarketChecklistItem(models.Model):
                 raise UserError("No puedes alterar la lista de otro usuario")
             if 'product_id' in vals and record.checklist_id.state != 'draft':
                 raise ValidationError("No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'")
-            if 'bought' in vals:
+            if 'purchased' in vals:
                 record.checklist_id.state = 'in_progress'
         return super().write(vals)
+
+    def check_purchased(self):
+        for record in self:
+            record.purchased = not record.purchased
