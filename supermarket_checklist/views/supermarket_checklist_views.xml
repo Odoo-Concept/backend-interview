@@ -22,10 +22,8 @@
             <form string="Lista de Supermercado">
                 <header>
                     <button name="add_product" type="object" string="Agregar Producto" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="back_to_draft" type="object" string="Volver a borrador" class="oe_highlight" invisible="state != 'in_progress'"/>
                     <field name="state" widget="statusbar" />
-                    <!-- <button name="action_confirm" type="object" string="Confirmar" states="draft" class="oe_highlight"/>
-                    <button name="action_done" type="object" string="Marcar como Hecho" states="confirmed"/>
-                    <button name="action_cancel" type="object" string="Cancelar" states="draft,confirmed"/> -->
                 </header>
                 <sheet>
                     <group>
@@ -35,7 +33,7 @@
                     <notebook>
                         <page string="Items">
                             <field name="item_ids" readonly="state == 'done'">
-                                <list string="Productos" edit="0" create="0">
+                                <list editable="bottom" string="Productos">
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="bought"/>

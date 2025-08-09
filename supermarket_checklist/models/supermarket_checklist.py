@@ -30,8 +30,15 @@ class SupermarketChecklist(models.Model):
             'context': {'default_checklist_id': self.id},
         }
 
+    def back_to_draft(self):
+        """ Método para volver estado de la lista a borrador """
+
+        self.state = 'draft'
+
     @api.model
     def write(self, vals):
+        """ Sobreescritura del método write para realizar validaciones """
+
         for record in self:
             if self.env.user != record.user_id:
                 raise UserError("No puedes alterar la lista de otro usuario")
