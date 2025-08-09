@@ -9,7 +9,7 @@ class SupermarketChecklist(models.Model):
 
     name = fields.Char(string='Nombre de la lista', required=True)
     description = fields.Text(string='Descripción')
-    user_id = fields.Many2one('res.users', string='Responsable', required=True)
+    user_id = fields.Many2one('res.users', string='Responsable', required=True, default=lambda self: self.env.user)
     item_ids = fields.One2many('supermarket.checklist.item', 'checklist_id', string='Productos')
     state = fields.Selection([
         ('draft', 'Borrador'),
