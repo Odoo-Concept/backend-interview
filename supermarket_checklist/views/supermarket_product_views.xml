@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- list view -->
+    <record id="view_supermarket_product_list" model="ir.ui.view">
+        <field name="name">supermarket.product.list</field>
+        <field name="model">supermarket.product</field>
+        <field name="arch" type="xml">
+            <list string="Productos">
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_supermarket_product" model="ir.actions.act_window">
+        <field name="name">Productos</field>
+        <field name="res_model">supermarket.product</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem id="menu_supermarket_product" name="Productos" parent="menu_supermarket_root" action="action_supermarket_product" sequence="2"/>
+
+</odoo>
