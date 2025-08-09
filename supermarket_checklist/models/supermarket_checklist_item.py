@@ -25,7 +25,7 @@ class SupermarketChecklistItem(models.Model):
 
     @api.model
     def write(self, vals):
-
+        """ Sobreescritura del método write para realizar validaciones """
 
         for record in self:
             self.env['supermarket.checklist']._check_user(record.checklist_id.user_id)
@@ -37,6 +37,7 @@ class SupermarketChecklistItem(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        """ Sobreescritura del método create para realizar validaciones """
 
         records = super().create(vals_list)
 

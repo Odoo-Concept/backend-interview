@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- list view -->
+    <!-- List view -->
     <record id="view_supermarket_checklist_list" model="ir.ui.view">
         <field name="name">supermarket.checklist.list</field>
         <field name="model">supermarket.checklist</field>
@@ -49,6 +49,23 @@
             </form>
         </field>
     </record>
+
+    <!-- Search view -->
+     <record id="view_supermarket_checklist_search" model="ir.ui.view">
+        <field name="name">supermarket.checklist.search</field>
+        <field name="model">supermarket.checklist</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id" />
+                <field name="state" />
+                <filter name="filter_by_draft" string="En borrador" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_by_in_progress" string="En progreso" domain="[('state', '=', 'in_progress')]"/>
+                <filter name="filter_by_done" string="Completada" domain="[('state', '=', 'done')]"/>
+                <filter name="group_by_state" string="Estado" context="{'group_by': 'state'}" />
+                <filter name="group_by_user_id" string="Responsable" context="{'group_by': 'user_id'}" />
+            </search>
+        </field>
+     </record>
 
     <!-- Action -->
     <record id="action_supermarket_checklist" model="ir.actions.act_window">
