@@ -33,12 +33,12 @@
                         <field name="user_id"/>
                     </group>
                     <notebook>
-                        <page string="Productos">
+                        <page string="Items">
                             <field name="item_ids">
                                 <list editable="bottom" string="Productos">
                                     <field name="product_id"/>
                                     <field name="quantity"/>
-                                    <field name="bought"/>
+                                    <field name="bought" widget="boolean_toggle"/>
                                 </list>
                             </field>
                         </page>

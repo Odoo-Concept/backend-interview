@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class SupermarketChecklist(models.Model):
@@ -28,3 +29,10 @@ class SupermarketChecklist(models.Model):
             'target': 'new',
             'context': {'default_checklist_id': self.id},
         }
+
+    @api.model
+    def write(self, vals):
+        for record in self:
+            if self.env.user != record.user_id:
+                raise UserError("No puedes alterar la lista de otro usuario")
+        return super().write(vals)
