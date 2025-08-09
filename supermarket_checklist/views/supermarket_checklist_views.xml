@@ -6,7 +6,11 @@
         <field name="name">supermarket.checklist.list</field>
         <field name="model">supermarket.checklist</field>
         <field name="arch" type="xml">
-            <list string="Listas de Supermercado">
+            <list string="Listas de Supermercado"
+                decoration-success="state == 'done'"
+                decoration-info="state == 'in_progress'"
+                decoration-warning="state == 'draft'"
+            >
                 <field name="name"/>
                 <field name="user_id"/>
                 <field name="state"/>
