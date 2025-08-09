@@ -17,8 +17,10 @@ class SupermarketChecklistItem(models.Model):
     @api.model
     def write(self, vals):
         for record in self:
-            if 'product_id' in vals and record.checklist_id.state != 'draft':
-                raise ValidationError("No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'")
             if self.env.user != record.checklist_id.user_id:
                 raise UserError("No puedes alterar la lista de otro usuario")
+            if 'product_id' in vals and record.checklist_id.state != 'draft':
+                raise ValidationError("No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'")
+            if 'bought' in vals:
+                record.checklist_id.state = 'in_progress'
         return super().write(vals)
