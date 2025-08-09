@@ -73,3 +73,5 @@ class SupermarketChecklist(models.Model):
 
         for record in self:
             self._check_user(record.user_id)
+
+        return super().unlink()
