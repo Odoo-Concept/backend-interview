@@ -16,6 +16,12 @@ class SupermarketChecklistItem(models.Model):
     purchased = fields.Boolean(string='Comprado', default=False)
     checklist_id = fields.Many2one('supermarket.checklist', string='Lista de Supermercado', required=True, ondelete="cascade")
 
+    _sql_constraints = [
+        ('unique_product_per_checklist',
+         'UNIQUE(checklist_id, product_id)',
+         'Hay productos duplicados en la lista.')
+    ]
+
 
     @api.model
     def write(self, vals):
