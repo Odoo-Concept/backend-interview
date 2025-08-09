@@ -7,6 +7,7 @@ class SupermarketChecklistItem(models.Model):
     _name = 'supermarket.checklist.item'
     _description = 'Item de la Lista de Supermercado'
 
+    sequence = fields.Integer(default=10)
     product_id = fields.Many2one('supermarket.product', string='Producto', required=True)
     product_description = fields.Text(related='product_id.description')
     quantity = fields.Integer(string='Cantidad', required=True)
