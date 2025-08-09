@@ -16,6 +16,22 @@ class SupermarketChecklist(models.Model):
         ('in_progress', 'En Progreso'),
         ('done', 'Completada'),
     ], string='Estado', default='draft')
+    progress = fields.Float(
+        string='% Completado',
+        compute='_compute_progress',
+        store=True
+    )
+
+
+    @api.depends('item_ids.purchased')
+    def _compute_progress(self):
+        for record in self:
+            total = len(record.item_ids)
+            if total:
+                purchased_count = sum(1 for item in record.item_ids if item.purchased)
+                record.progress = (purchased_count / total) * 100
+            else:
+                record.progress = 0.0
 
 
     def _check_user(self, user_id):

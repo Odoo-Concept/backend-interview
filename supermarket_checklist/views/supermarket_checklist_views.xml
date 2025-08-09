@@ -30,14 +30,19 @@
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="user_id"/>
+                    <h1><field name="name" nolabel="1" placeholder="Nombre de la lista..."/></h1>
+                    <group col="2">
+                        <group>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="progress" widget="progressbar" options="{'max_field': 100}"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Items">
                             <field name="item_ids" readonly="state != 'draft'">
-                                <list editable="bottom" string="Productos">
+                                <list editable="bottom" string="Productos" decoration-muted="purchased">
                                     <field name="sequence" widget="handle"/>
                                     <field name="product_id"/>
                                     <button name="decrement_quantity" icon="fa-minus" type="object" class="oe_highlight" invisible="purchased"/>
