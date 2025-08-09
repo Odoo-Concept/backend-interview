@@ -30,3 +30,5 @@ class SupermarketChecklistItem(models.Model):
         for record in self:
             self.env['supermarket.checklist']._check_user(record.checklist_id.user_id)
             record.purchased = not record.purchased
+            if all(item.purchased for item in record.checklist_id.item_ids):
+                record.checklist_id.state = 'done'
