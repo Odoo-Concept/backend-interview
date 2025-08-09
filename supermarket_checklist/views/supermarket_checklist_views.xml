@@ -45,8 +45,8 @@
                                 <list editable="bottom" string="Productos" decoration-muted="purchased">
                                     <field name="sequence" widget="handle"/>
                                     <field name="product_id"/>
-                                    <button name="decrement_quantity" icon="fa-minus" type="object" class="oe_highlight" invisible="purchased"/>
                                     <field name="quantity" readonly="1"/>
+                                    <button name="decrement_quantity" icon="fa-minus" type="object" class="oe_highlight" invisible="purchased"/>
                                     <button name="increment_quantity" icon="fa-plus" type="object" class="oe_highlight" invisible="purchased"/>
                                     <field name="purchased" readonly="1"/>
                                     <button name="check_purchased" string="Marcar comprado" icon="fa-check-square-o" type="object" class="oe_highlight" invisible="purchased"/>

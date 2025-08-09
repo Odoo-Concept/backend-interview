@@ -23,7 +23,14 @@ class SupermarketChecklistItem(models.Model):
     ]
 
 
-    @api.model
+    def _get_max_quantity(self):
+        """ Método para obtener el máximo para la cantidad de un item """
+
+        max_items = int(self.env['ir.config_parameter'].get_param('supermarket_checklist_items.max_quantity'))
+        if not max_items:
+            max_items = MAX_QUANTITY
+        return max_items
+
     def write(self, vals):
         """ Sobreescritura del método write para realizar validaciones """
 
@@ -31,7 +38,7 @@ class SupermarketChecklistItem(models.Model):
             self.env['supermarket.checklist']._check_user(record.checklist_id.user_id)
             if 'product_id' in vals and record.checklist_id.state != 'draft':
                 raise ValidationError("No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'")
-            if 'purchased' in vals:
+            if 'purchased' in vals and record.checklist_id.state == 'draft':
                 record.checklist_id.state = 'in_progress'
         return super().write(vals)
 
@@ -40,11 +47,12 @@ class SupermarketChecklistItem(models.Model):
         """ Sobreescritura del método create para realizar validaciones """
 
         records = super().create(vals_list)
-
+        max_items = self._get_max_quantity()
         for record in records:
             if not record.quantity or record.quantity <= 0:
                 raise ValidationError("El item debe tener al menos una unidad")
-
+            if record.quantity > max_items:
+                raise ValidationError("No se pueden agregar más de 10 items de un mismo producto")
         return records 
 
     def check_purchased(self):
@@ -67,10 +75,8 @@ class SupermarketChecklistItem(models.Model):
     def increment_quantity(self):
         """ Método para incrementar el valor de cantidad """
 
+        max_items = self._get_max_quantity()
         for record in self:
-            max_items = self.env['ir.config_parameter'].get_param('supermarket_checklist_items.max_quantity')
-            if not max_items:
-                max_items = MAX_QUANTITY
             if record.quantity == max_items:
                 raise ValidationError("No se pueden agregar más de 10 items de un mismo producto")
             record.quantity += 1

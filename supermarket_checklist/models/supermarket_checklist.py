@@ -60,7 +60,6 @@ class SupermarketChecklist(models.Model):
 
         self.state = 'draft'
 
-    @api.model
     def write(self, vals):
         """ Sobreescritura del método write para realizar validaciones """
 
