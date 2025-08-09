@@ -18,8 +18,17 @@ class SupermarketChecklist(models.Model):
     ], string='Estado', default='draft')
 
 
+    def _check_user(self, user_id):
+        """ Método para validar si el usuario que está logueado es el responsable de la lista """
+
+        if self.env.user != user_id:
+            raise UserError("No puedes alterar la lista de otro usuario")
+
     def add_product(self):
         """ Método para agregar un producto a la lista de supermercado """
+
+        for record in self:
+            self._check_user(record.user_id)
 
         return {
             'type': 'ir.actions.act_window',
@@ -40,6 +49,11 @@ class SupermarketChecklist(models.Model):
         """ Sobreescritura del método write para realizar validaciones """
 
         for record in self:
-            if self.env.user != record.user_id:
-                raise UserError("No puedes alterar la lista de otro usuario")
+            self._check_user(record.user_id)
         return super().write(vals)
+
+    def unlink(self):
+        """ Sobreescritura del método unlink para realizar validaciones """
+
+        for record in self:
+            self._check_user(record.user_id)

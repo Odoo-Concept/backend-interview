@@ -17,8 +17,7 @@ class SupermarketChecklistItem(models.Model):
     @api.model
     def write(self, vals):
         for record in self:
-            if self.env.user != record.checklist_id.user_id:
-                raise UserError("No puedes alterar la lista de otro usuario")
+            self.env['supermarket.checklist']._check_user(record.checklist_id.user_id)
             if 'product_id' in vals and record.checklist_id.state != 'draft':
                 raise ValidationError("No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'")
             if 'purchased' in vals:
@@ -26,5 +25,8 @@ class SupermarketChecklistItem(models.Model):
         return super().write(vals)
 
     def check_purchased(self):
+        """ Método para marcar que se ha comprado el item"""
+
         for record in self:
+            self.env['supermarket.checklist']._check_user(record.checklist_id.user_id)
             record.purchased = not record.purchased
