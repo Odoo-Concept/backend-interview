@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 MAX_QUANTITY = 10
@@ -49,7 +49,7 @@ class SupermarketChecklistItem(models.Model):
             self.env["supermarket.checklist"]._check_user(record.checklist_id.user_id)
             if "product_id" in vals and record.checklist_id.state != "draft":
                 raise ValidationError(
-                    "No puedes editar los items de la lista cuando la lista no está en estado 'Borrador'"
+                    _("Para editar los itmes, la lista debe estar en" "'Borrador'")
                 )
             if "purchased" in vals and record.checklist_id.state == "draft":
                 record.checklist_id.state = "in_progress"
@@ -63,10 +63,10 @@ class SupermarketChecklistItem(models.Model):
         max_items = self._get_max_quantity()
         for record in records:
             if not record.quantity or record.quantity <= 0:
-                raise ValidationError("El item debe tener al menos una unidad")
+                raise ValidationError(_("El item debe tener al menos una unidad"))
             if record.quantity > max_items:
                 raise ValidationError(
-                    "No se pueden agregar más de 10 items de un mismo producto"
+                    _("El máximo de items para un mismo producto es %s") % max_items
                 )
         return records
 
@@ -84,7 +84,7 @@ class SupermarketChecklistItem(models.Model):
 
         for record in self:
             if record.quantity == 1:
-                raise ValidationError("La cantidad no puede ser menor a 1")
+                raise ValidationError(_("La cantidad no puede ser menor a 1"))
             record.quantity -= 1
 
     def increment_quantity(self):
@@ -94,6 +94,6 @@ class SupermarketChecklistItem(models.Model):
         for record in self:
             if record.quantity == max_items:
                 raise ValidationError(
-                    "No se pueden agregar más de 10 items de un mismo producto"
+                    _("El máximo de items para un mismo producto es %s") % max_items
                 )
             record.quantity += 1

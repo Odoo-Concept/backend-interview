@@ -78,6 +78,7 @@
                                         type="object"
                                         class="oe_highlight"
                                         invisible="purchased"
+                                        title="Disminuir cantidad"
                                     />
                                     <button
                                         name="increment_quantity"
@@ -85,6 +86,7 @@
                                         type="object"
                                         class="oe_highlight"
                                         invisible="purchased"
+                                        title="Incrementar cantidad"
                                     />
                                     <field name="purchased" readonly="1" />
                                     <button
@@ -94,6 +96,7 @@
                                         type="object"
                                         class="oe_highlight"
                                         invisible="purchased"
+                                        title="Marcar comprado"
                                     />
                                 </list>
                             </field>

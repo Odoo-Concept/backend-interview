@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -41,10 +41,11 @@ class SupermarketChecklist(models.Model):
                 record.progress = 0.0
 
     def _check_user(self, user_id):
-        """Método para validar si el usuario que está logueado es el responsable de la lista"""
+        """Método para validar si el usuario que está logueado es el
+        responsable de la lista"""
 
         if self.env.user != user_id:
-            raise UserError("No puedes alterar la lista de otro usuario")
+            raise UserError(_("No puedes alterar la lista de otro usuario"))
 
     def add_product(self):
         """Método para agregar un producto a la lista de supermercado"""
