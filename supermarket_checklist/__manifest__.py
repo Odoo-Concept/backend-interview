@@ -12,7 +12,7 @@
         "security/ir.model.access.csv",
         "views/supermarket_checklist_views.xml",
         "views/supermarket_product_views.xml",
-        "views/supermarket_checklist_item_views.xml"
+        "views/supermarket_checklist_item_views.xml",
     ],
     "installable": True,
     "application": True,

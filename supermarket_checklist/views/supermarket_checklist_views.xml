@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- List view -->
     <record id="view_supermarket_checklist_list" model="ir.ui.view">
         <field name="name">supermarket.checklist.list</field>
         <field name="model">supermarket.checklist</field>
         <field name="arch" type="xml">
-            <list string="Listas de Supermercado"
+            <list
+                string="Listas de Supermercado"
                 decoration-success="state == 'done'"
                 decoration-info="state == 'in_progress'"
                 decoration-warning="state == 'draft'"
             >
-                <field name="name"/>
-                <field name="user_id"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="user_id" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -25,31 +25,76 @@
         <field name="arch" type="xml">
             <form string="Lista de Supermercado">
                 <header>
-                    <button name="add_product" type="object" string="Agregar Producto" class="oe_highlight" invisible="state != 'draft'"/>
-                    <button name="back_to_draft" type="object" string="Volver a borrador" class="oe_highlight" invisible="state != 'in_progress'"/>
+                    <button
+                        name="add_product"
+                        type="object"
+                        string="Agregar Producto"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="back_to_draft"
+                        type="object"
+                        string="Volver a borrador"
+                        class="oe_highlight"
+                        invisible="state != 'in_progress'"
+                    />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <h1><field name="name" nolabel="1" placeholder="Nombre de la lista..."/></h1>
+                    <h1>
+                        <field
+                            name="name"
+                            nolabel="1"
+                            placeholder="Nombre de la lista..."
+                        />
+                    </h1>
                     <group col="2">
                         <group>
-                            <field name="user_id"/>
+                            <field name="user_id" />
                         </group>
                         <group>
-                            <field name="progress" widget="progressbar" options="{'max_field': 100}"/>
+                            <field
+                                name="progress"
+                                widget="progressbar"
+                                options="{'max_field': 100}"
+                            />
                         </group>
                     </group>
                     <notebook>
                         <page string="Items">
                             <field name="item_ids" readonly="state != 'draft'">
-                                <list editable="bottom" string="Productos" decoration-muted="purchased">
-                                    <field name="sequence" widget="handle"/>
-                                    <field name="product_id"/>
-                                    <field name="quantity" readonly="1"/>
-                                    <button name="decrement_quantity" icon="fa-minus" type="object" class="oe_highlight" invisible="purchased"/>
-                                    <button name="increment_quantity" icon="fa-plus" type="object" class="oe_highlight" invisible="purchased"/>
-                                    <field name="purchased" readonly="1"/>
-                                    <button name="check_purchased" string="Marcar comprado" icon="fa-check-square-o" type="object" class="oe_highlight" invisible="purchased"/>
+                                <list
+                                    editable="bottom"
+                                    string="Productos"
+                                    decoration-muted="purchased"
+                                >
+                                    <field name="sequence" widget="handle" />
+                                    <field name="product_id" />
+                                    <field name="quantity" readonly="1" />
+                                    <button
+                                        name="decrement_quantity"
+                                        icon="fa-minus"
+                                        type="object"
+                                        class="oe_highlight"
+                                        invisible="purchased"
+                                    />
+                                    <button
+                                        name="increment_quantity"
+                                        icon="fa-plus"
+                                        type="object"
+                                        class="oe_highlight"
+                                        invisible="purchased"
+                                    />
+                                    <field name="purchased" readonly="1" />
+                                    <button
+                                        name="check_purchased"
+                                        string="Marcar comprado"
+                                        icon="fa-check-square-o"
+                                        type="object"
+                                        class="oe_highlight"
+                                        invisible="purchased"
+                                    />
                                 </list>
                             </field>
                         </page>
@@ -60,32 +105,57 @@
     </record>
 
     <!-- Search view -->
-     <record id="view_supermarket_checklist_search" model="ir.ui.view">
+    <record id="view_supermarket_checklist_search" model="ir.ui.view">
         <field name="name">supermarket.checklist.search</field>
         <field name="model">supermarket.checklist</field>
         <field name="arch" type="xml">
             <search>
                 <field name="user_id" />
                 <field name="state" />
-                <filter name="filter_by_draft" string="En borrador" domain="[('state', '=', 'draft')]"/>
-                <filter name="filter_by_in_progress" string="En progreso" domain="[('state', '=', 'in_progress')]"/>
-                <filter name="filter_by_done" string="Completada" domain="[('state', '=', 'done')]"/>
-                <filter name="group_by_state" string="Estado" context="{'group_by': 'state'}" />
-                <filter name="group_by_user_id" string="Responsable" context="{'group_by': 'user_id'}" />
+                <filter
+                    name="filter_by_draft"
+                    string="En borrador"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="filter_by_in_progress"
+                    string="En progreso"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter
+                    name="filter_by_done"
+                    string="Completada"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    name="group_by_state"
+                    string="Estado"
+                    context="{'group_by': 'state'}"
+                />
+                <filter
+                    name="group_by_user_id"
+                    string="Responsable"
+                    context="{'group_by': 'user_id'}"
+                />
             </search>
         </field>
-     </record>
+    </record>
 
     <!-- Action -->
     <record id="action_supermarket_checklist" model="ir.actions.act_window">
         <field name="name">Listas de Supermercado</field>
         <field name="res_model">supermarket.checklist</field>
         <field name="view_mode">list,form</field>
-        <field name="view_id" ref="view_supermarket_checklist_list"/>
+        <field name="view_id" ref="view_supermarket_checklist_list" />
     </record>
 
     <!-- Menú -->
-    <menuitem id="menu_supermarket_root" name="Supermercado" sequence="20"/>
-    <menuitem id="menu_supermarket_checklists" name="Listas de Supermercado" parent="menu_supermarket_root" action="action_supermarket_checklist" sequence="1"/>
-
+    <menuitem id="menu_supermarket_root" name="Supermercado" sequence="20" />
+    <menuitem
+        id="menu_supermarket_checklists"
+        name="Listas de Supermercado"
+        parent="menu_supermarket_root"
+        action="action_supermarket_checklist"
+        sequence="1"
+    />
 </odoo>
