@@ -3,13 +3,6 @@
     "version": "18.0.1.0.1",
     "category": "Extra Tools",
     "summary": "Gestionar listas de compras del supermercado",
-    "description": """
-        Módulo para crear y gestionar listas de supermercado:
-        - Crear listas de compras
-        - Añadir productos con cantidades
-        - Marcar productos como comprados
-        - Estados: Borrador, En Progreso, Completada
-    """,
     "author": "Agustín Lorca <aguslorca.12@gmail.com>, Odoo Concept",
     "website": "https://odooconcept.com",
     "depends": [
