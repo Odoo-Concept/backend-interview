@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú principal -->
+    <menuitem id="menu_supermarket_root" name="Supermercado" sequence="10"/>
+
+    <!-- Menú para Listas de Supermercado -->
+    <menuitem
+        id="menu_grocery_list"
+        name="Listas de Supermercado"
+        parent="menu_supermarket_root"
+        action="action_grocery_list"
+        sequence="1"
+    />
+
+    <!-- Menú para Productos -->
+    <menuitem
+        id="menu_grocery_list_item"
+        name="Productos"
+        parent="menu_supermarket_root"
+        action="action_grocery_list_item"
+        sequence="2"
+    />
+</odoo>

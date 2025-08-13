@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Variante del form al abrir desde el boton 'Añadir producto' en la vista 'grocery.list'-->
+    <record id="view_grocery_list_item_form_compact" model="ir.ui.view">
+        <field name="name">grocery.list.item.form.compact</field>
+        <field name="model">grocery.list.item</field>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="quantity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de formulario para Grocery List Item -->
+    <record id="view_grocery_list_item_form" model="ir.ui.view">
+        <field name="name">grocery.list.item.form</field>
+        <field name="model">grocery.list.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Información del producto">
+                        <field name="name" readonly="responsible_id != uid or list_state != 'draft'"/>
+                        <field name="description" readonly="responsible_id != uid or list_state != 'draft'"/>
+                        <field name="quantity" readonly="responsible_id != uid or list_state != 'draft'"/>
+                        <field name="is_purchased" readonly="1"/>
+                    </group>
+                    <group string="Información adicional">
+                        <field name="list_id" readonly="responsible_id != uid or list_state != 'draft'"/>
+                        <field
+                            name="list_state"
+                            widget="label_selection"
+                            options="{'classes': {'draft': 'info', 'in_progress': 'warning', 'completed': 'success'}}"
+                        />
+                        <field name="responsible_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de lista para Grocery List Item -->
+    <record id="view_grocery_list_item_list" model="ir.ui.view">
+        <field name="name">grocery.list.item.list</field>
+        <field name="model">grocery.list.item</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="quantity"/>
+                <field name="is_purchased"/>
+                <field name="list_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action Grocery List Item -->
+    <record id="action_grocery_list_item" model="ir.actions.act_window">
+        <field name="name">Productos</field>
+        <field name="res_model">grocery.list.item</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
