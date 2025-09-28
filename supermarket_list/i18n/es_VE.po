@@ -1,0 +1,206 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* supermarket_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20250814\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-28 00:11+0000\n"
+"PO-Revision-Date: 2025-09-28 00:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "All items must be purchased to complete the list. Pending: %s"
+msgstr "Todos los artículos deben ser comprados para completar la lista. Pendientes: %s"
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "Cannot complete a list with no items."
+msgstr "No se puede completar una lista sin artículos."
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "Cannot start a list without items."
+msgstr "No se puede iniciar una lista sin artículos."
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Cant"
+msgstr "Cantidad"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__create_uid
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__create_date
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__display_name
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: supermarket_list
+#: model:ir.model.fields.selection,name:supermarket_list.selection__supermarket_list__state__done
+msgid "Done"
+msgstr "Completado"
+
+#. module: supermarket_list
+#: model:ir.model.fields.selection,name:supermarket_list.selection__supermarket_list__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Estado"
+msgstr "Estado"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__id
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__id
+msgid "ID"
+msgstr "ID"
+
+#. module: supermarket_list
+#: model:ir.model.fields.selection,name:supermarket_list.selection__supermarket_list__state__in_progress
+msgid "In Progress"
+msgstr "En progreso"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__is_responsible
+msgid "Is Responsible"
+msgstr "Es responsable"
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Items"
+msgstr "Artículos"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__write_uid
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__write_date
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__list_id
+msgid "List"
+msgstr "Lista"
+
+#. module: supermarket_list
+#: model:ir.model,name:supermarket_list.model_list_line
+msgid "List Line"
+msgstr "Línea de lista"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__line_ids
+msgid "List Lines"
+msgstr "Líneas de lista"
+
+#. module: supermarket_list
+#: model:ir.ui.menu,name:supermarket_list.menu_supermarket_list
+msgid "Lists"
+msgstr "Listas"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: supermarket_list
+#: model:ir.model.fields.selection,name:supermarket_list.selection__list_line__state__not_purchased
+msgid "Not Purchased"
+msgstr "No comprado"
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "Only the responsible user can complete the list."
+msgstr "Solo el usuario responsable puede completar la lista."
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "Only the responsible user can reset the list to draft."
+msgstr "Solo el usuario responsable puede reiniciar la lista a borrador."
+
+#. module: supermarket_list
+#. odoo-python
+#: code:addons/supermarket_list/models/supermarket_list.py:0
+msgid "Only the responsible user can start the list."
+msgstr "Solo el usuario responsable puede iniciar la lista."
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Producto"
+msgstr "Producto"
+
+#. module: supermarket_list
+#: model:ir.model.fields.selection,name:supermarket_list.selection__list_line__state__purchased
+msgid "Purchased"
+msgstr "Comprado"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Set In Progress"
+msgstr "Establecer en progreso"
+
+#. module: supermarket_list
+#: model_terms:ir.ui.view,arch_db:supermarket_list.view_supermarket_list_form
+msgid "Start"
+msgstr "Iniciar"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_list_line__state
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__state
+msgid "State"
+msgstr "Estado"
+
+#. module: supermarket_list
+#: model:ir.ui.menu,name:supermarket_list.menu_supermarket_list_main
+msgid "Supermarket"
+msgstr "Supermercado"
+
+#. module: supermarket_list
+#: model:ir.actions.act_window,name:supermarket_list.action_supermarket_list
+#: model:ir.model,name:supermarket_list.model_supermarket_list
+#: model:ir.ui.menu,name:supermarket_list.menu_supermarket_list_root
+msgid "Supermarket List"
+msgstr "Lista de supermercado"
+
+#. module: supermarket_list
+#: model:ir.model.fields,field_description:supermarket_list.field_supermarket_list__user_id
+msgid "User"
+msgstr "Usuario"
