@@ -1,0 +1,61 @@
+<!-- views/supermarket_list_views.xml -->
+<odoo>
+    <record id="view_supermarket_list_tree" model="ir.ui.view">
+        <field name="name">supermarket.list.tree</field>
+        <field name="model">supermarket.list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_supermarket_list_form" model="ir.ui.view">
+        <field name="name">supermarket.list.form</field>
+        <field name="model">supermarket.list</field>
+        <field name="arch" type="xml">
+                <form readonly="not is_responsible"> 
+                    <header>
+                            <button name="action_confirm" string="Completed" type="object" invisible="state not in ('in_progress')" class="btn-primary" data-hotkey="q"/>
+                            <button name="action_set_in_progress" string="Set In Progress" invisible="state not in ('draft')" type="object" class="btn-secondary" data-hotkey="w"/>
+                            <button name="action_reset_to_draft" string="Reset to Draft" type="object" invisible="state != 'done'" class="btn-secondary" data-hotkey="e"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Completada" invisible="state != 'done'"/>
+                        <group>
+                                <field name="name"/>
+                        </group>
+                        <group>
+                                <field name="user_id" />
+                        </group>
+                        <notebook>
+                        <page id="line_ids_page" string="Items">
+                            <field name="line_ids" mode="list" readonly="not is_responsible">
+                                <list editable="bottom" string="Items" decoration-info="state == 'purchased'">
+                                    <field name="product_id" string="Producto" required="1"/>
+                                    <field name="quantity" string="Cant"/>
+                                    <field name="state" string="Estado"/>
+                                </list>
+                            </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                    <chatter reload_on_attachment="True"/>
+                </form>
+        </field>
+    </record>
+    <record id="action_supermarket_list" model="ir.actions.act_window">
+        <field name="name">Supermarket List</field>
+        <field name="res_model">supermarket.list</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_supermarket_list_main" 
+        name="Supermarket"
+        web_icon="base,static/description/settings.png"
+        sequence="550"/>
+    <menuitem id="menu_supermarket_list_root" name="Supermarket List" parent="menu_supermarket_list_main" sequence="3"/>
+    <menuitem id="menu_supermarket_list" action="action_supermarket_list" name="Lists" parent="menu_supermarket_list_root"/>
+    
+</odoo>
