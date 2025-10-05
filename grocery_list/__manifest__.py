@@ -2,28 +2,32 @@
     "name": "Grocery List",
     "version": "18.0.1.0.0",
     "category": "Productivity",
-    "summary": "Module for creating and managing grocery lists in Odoo.",
+    "summary": "Create and manage grocery lists with items, quantities, and purchase tracking.",
     "description": """
 Grocery List Module
 ===================
 This module allows users to create and manage grocery lists efficiently.
-Users can:
-- Create new grocery lists.
-- Add products with desired quantities.
-- Mark items as purchased (only by the responsible user).
-- Manage list states: Draft, In Progress, Completed.
+
+Features:
+- Create grocery lists with a responsible user and states.
+- Add products.
+- Only the responsible can mark items as purchased.
+- States: Draft, In Progress, Completed.
     """,
     "author": "Armando Rojas <armando.rojas@example.com>",
     "website": "https://odooconcept.com",
     "depends": [
         "base",
+        "mail",
+        "product",
     ],
     "data": [
-        # "security/ir.model.access.csv",
-        # "views/grocery_list_views.xml",
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "security/rules.xml",
+        "views/grocery_list_views.xml"
     ],
     "installable": True,
     "application": True,
-    "auto_install": False,
-    "license": "OPL-1",
+    "license": "LGPL-3",
 }

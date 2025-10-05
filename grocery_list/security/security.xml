@@ -1,0 +1,30 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Crear categoría específica para Grocery List -->
+        <record id="module_category_grocery_list" model="ir.module.category">
+            <field name="name">Rol Grocery List</field>
+            <field name="description">Permisos de acceso para el módulo Grocery List</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Base user group -->
+        <record id="group_grocery_list_user" model="res.groups">
+            <field name="name">Grocery List: User</field>
+            <field name="category_id" ref="module_category_grocery_list"/>
+            <field name="comment">Puede ver y editar sus propias listas de compras</field>
+        </record>
+
+        <!-- Manager group -->
+        <record id="group_grocery_list_manager" model="res.groups">
+            <field name="name">Grocery List: Manager</field>
+            <field name="implied_ids" eval="[(4, ref('grocery_list.group_grocery_list_user'))]"/>
+            <field name="category_id" ref="module_category_grocery_list"/>
+            <field name="comment">Puede gestionar todas las listas de compras y configuraciones</field>
+        </record>
+
+        <!-- Dar acceso automático a los Administradores -->
+        <record id="base.group_system" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('grocery_list.group_grocery_list_manager'))]"/>
+        </record>
+    </data>
+</odoo>

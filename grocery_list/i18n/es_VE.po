@@ -1,0 +1,466 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* grocery_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20250930\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-05 16:49+0000\n"
+"PO-Revision-Date: 2025-10-05 16:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono del tipo de actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_attachment_count
+msgid "Attachment Count"
+msgstr "Número de adjuntos"
+
+#. module: grocery_list
+#: model_terms:ir.actions.act_window,help:grocery_list.action_grocery_list
+msgid "Click the <b>Create</b> button to start a new shopping list."
+msgstr "Haz clic en el botón <b>Crear</b> para comenzar una nueva lista de compras."
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__color
+msgid "Color Index"
+msgstr "Índice de color"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Complete"
+msgstr "Completar"
+
+#. module: grocery_list
+#: model:ir.model.fields.selection,name:grocery_list.selection__grocery_list__state__done
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "Completed"
+msgstr "Completado"
+
+#. module: grocery_list
+#: model_terms:ir.actions.act_window,help:grocery_list.action_grocery_list
+msgid "Create your first grocery list"
+msgstr "Crea tu primera lista de compras"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__create_uid
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__create_date
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__currency_id
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_kanban
+msgid "Delete"
+msgstr "Eliminar"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__display_name
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: grocery_list
+#: model:ir.model.fields.selection,name:grocery_list.selection__grocery_list__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_kanban
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_kanban
+msgid "Edit"
+msgstr "Editar"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ícono Font Awesome, por ejemplo fa-tasks"
+
+#. module: grocery_list
+#: model:ir.model,name:grocery_list.model_grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Grocery List"
+msgstr "Lista de compras"
+
+#. module: grocery_list
+#: model:ir.model,name:grocery_list.model_grocery_list_item
+msgid "Grocery List Item"
+msgstr "Elemento de la lista de compras"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Grocery List Name"
+msgstr "Nombre de la lista de compras"
+
+#. module: grocery_list
+#: model:res.groups,name:grocery_list.group_grocery_list_manager
+msgid "Grocery List: Manager"
+msgstr "Lista de compras: Administrador"
+
+#. module: grocery_list
+#: model:res.groups,name:grocery_list.group_grocery_list_user
+msgid "Grocery List: User"
+msgstr "Lista de compras: Usuario"
+
+#. module: grocery_list
+#: model:ir.actions.act_window,name:grocery_list.action_grocery_list
+#: model:ir.ui.menu,name:grocery_list.menu_grocery_root
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_list
+msgid "Grocery Lists"
+msgstr "Listas de compras"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__id
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__id
+msgid "ID"
+msgstr "ID"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_exception_icon
+msgid "Icon"
+msgstr "Ícono"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ícono que indica una actividad con excepción."
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay mensajes nuevos que requieren tu atención."
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: grocery_list
+#: model:ir.model.fields.selection,name:grocery_list.selection__grocery_list__state__in_progress
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "In Progress"
+msgstr "En progreso"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__line_ids
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Items"
+msgstr "Artículos"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__write_uid
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__write_date
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__list_id
+msgid "List"
+msgstr "Lista"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "List Name"
+msgstr "Nombre de la lista"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Mark"
+msgstr "Marcar"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__toggle_purchase_action
+msgid "Mark / Unmark Purchase"
+msgstr "Marcar / Desmarcar compra"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_has_error
+msgid "Message Delivery error"
+msgstr "Error en la entrega del mensaje"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha límite de mi actividad"
+
+#. module: grocery_list
+#: model:ir.ui.menu,name:grocery_list.menu_grocery_list_main
+msgid "My Grocery Lists"
+msgstr "Mis listas de compras"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "My Lists"
+msgstr "Mis listas"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha límite de la próxima actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la próxima actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de próxima actividad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: grocery_list
+#: model:ir.module.category,description:grocery_list.module_category_grocery_list
+msgid "Permisos de acceso para el módulo Grocery List"
+msgstr "Permisos de acceso para el módulo Lista de compras"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__progress
+msgid "Progress (%)"
+msgstr "Progreso (%)"
+
+#. module: grocery_list
+#: model:res.groups,comment:grocery_list.group_grocery_list_manager
+msgid "Puede gestionar todas las listas de compras y configuraciones"
+msgstr "Puede gestionar todas las listas de compras y configuraciones"
+
+#. module: grocery_list
+#: model:res.groups,comment:grocery_list.group_grocery_list_user
+msgid "Puede ver y editar sus propias listas de compras"
+msgstr "Puede ver y editar sus propias listas de compras"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__purchased
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Purchased"
+msgstr "Comprado"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__purchased_at
+msgid "Purchased At"
+msgstr "Comprado el"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__purchased_by
+msgid "Purchased By"
+msgstr "Comprado por"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__purchased_items
+msgid "Purchased Items"
+msgstr "Artículos comprados"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__responsible_id
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: grocery_list
+#: model:ir.module.category,name:grocery_list.module_category_grocery_list
+msgid "Rol Grocery List"
+msgstr "Rol Lista de compras"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "Search Grocery Lists"
+msgstr "Buscar listas de compras"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Set Draft"
+msgstr "Establecer como borrador"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Start"
+msgstr "Iniciar"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__state
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_search
+msgid "State"
+msgstr "Estado"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en las actividades\n"
+"Vencido: La fecha límite ya ha pasado\n"
+"Hoy: La actividad es para hoy\n"
+"Planificada: Actividades futuras."
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__subtotal
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: grocery_list
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Total"
+msgstr "Total"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__total_amount
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Total Amount"
+msgstr "Monto total"
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list__total_items
+#: model_terms:ir.ui.view,arch_db:grocery_list.view_grocery_list_form
+msgid "Total Items"
+msgstr "Total de artículos"
+
+#. module: grocery_list
+#: model:ir.model.fields,help:grocery_list.field_grocery_list__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad excepcional registrada."
+
+#. module: grocery_list
+#: model:ir.model.fields,field_description:grocery_list.field_grocery_list_item__price_unit
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: grocery_list
+#. odoo-python
+#: code:addons/grocery_list/models/grocery_list.py:0
+msgid ""
+"You cannot mark this item as purchased because you are not the responsible "
+"user."
+msgstr "No puedes marcar este artículo como comprado porque no eres el usuario responsable."
+
+#. module: grocery_list
+#. odoo-python
+#: code:addons/grocery_list/models/grocery_list.py:0
+msgid "You do not have permission to perform this action."
+msgstr "No tienes permiso para realizar esta acción."
+
+#. module: grocery_list
+#:
