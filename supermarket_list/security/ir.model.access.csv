@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_supermarket_list,access_supermarket_list,model_supermarket_list,,1,1,1,1
+access_supermarket_list_line,access_supermarket_list_line,model_supermarket_list_line,,1,1,1,1

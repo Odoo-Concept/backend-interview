@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- list view de listas -->
+    <record id="view_supermarket_list_list" model="ir.ui.view">
+        <field name="name">supermarket.list.list</field>
+        <field name="model">supermarket.list</field>
+        <field name="arch" type="xml">
+            <list string="Listas de supermercado">
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_supermarket_list_form" model="ir.ui.view">
+        <field name="name">supermarket.list.form</field>
+        <field name="model">supermarket.list</field>
+        <field name="arch" type="xml">
+            <form string="Lista de Supermercado">
+                <header>
+                    <button name="action_set_draft" string="Pasar a Borrador" type="object" invisible="state in ['draft','done']"/>
+                    <button name="action_set_progress" string="Confirmar" type="object" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="state in ['progress','done']"/>
+                        <field name="responsible_id" readonly="state in ['progress','done']"/>
+                    </group>
+                    <notebook>
+                        <page string="Ítems">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="list_state" column_invisible="1"/>
+                                    <field name="product_id" readonly="list_state in ['progress','done']"/>
+                                    <field name="quantity" readonly="list_state in ['progress','done']"/>
+                                    <field name="purchased" readonly="list_state in ['draft','done']"/>
+                                    <field name="purchased_by" readonly="1"/>
+                                    <field name="purchased_date" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notas">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button string="Borrador" type="object" name="action_set_draft" class="btn-secondary"/>
+                        <button string="Iniciar" type="object" name="action_set_progress" class="btn-primary"/>
+                        <button string="Completar" type="object" name="action_set_done" class="btn-success"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- list view -->
+    <record id="view_supermarket_list_line_list" model="ir.ui.view">
+        <field name="name">supermarket.list.line.list</field>
+        <field name="model">supermarket.list.line</field>
+        <field name="arch" type="xml">
+            <list string="Ítems de listas">
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="purchased" eval="{'readonly': [('list_id.state', '!=', 'progress')]}"/>
+                <field name="list_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Acción general ver todas las listas -->
+    <record id="action_supermarket_list_all" model="ir.actions.act_window">
+        <field name="name">Todas las Listas</field>
+        <field name="res_model">supermarket.list</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Acción filtrada ver solo las del usuario actual -->
+    <record id="action_supermarket_list_my" model="ir.actions.act_window">
+        <field name="name">Mis Listas</field>
+        <field name="res_model">supermarket.list</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('responsible_id', '=', uid)]</field>
+    </record>
+
+    <!-- Menú principal -->
+    <menuitem id="menu_supermarket_root"
+              name="Supermarket"
+              sequence="1"
+              web_icon="supermarket_list,static/description/icon.png"/>
+
+    <!-- Submenú Todas las listas -->
+    <menuitem id="menu_supermarket_all_lists"
+              name="Todas las Listas"
+              parent="menu_supermarket_root"
+              action="action_supermarket_list_all"
+              sequence="1"/>
+
+    <!-- Submenú Mis listas -->
+    <menuitem id="menu_supermarket_my_lists"
+              name="Mis Listas"
+              parent="menu_supermarket_root"
+              action="action_supermarket_list_my"
+              sequence="2"/>
+
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Grupo básico para usuarios que usarán el módulo (opcional) -->
+    <record id="group_supermarket_user" model="res.groups">
+        <field name="name">Supermarket / User</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>
