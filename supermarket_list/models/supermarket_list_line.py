@@ -27,10 +27,6 @@ class SupermarketListLine(models.Model):
             if self.env.uid != record.list_id.responsible_id.id:
                     raise ValidationError(_('Solo el usuario responsable puede modificar este campo.'))
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        return rec
 
     def write(self, vals):
         res = super().write(vals)

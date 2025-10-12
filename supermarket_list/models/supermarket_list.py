@@ -26,10 +26,6 @@ class SupermarketList(models.Model):
 
     note = fields.Text(string='Notas')
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        return rec
 
     def action_set_draft(self):
         for rec in self:
