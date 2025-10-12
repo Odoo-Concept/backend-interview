@@ -62,3 +62,24 @@ class SupermarketListLine(models.Model):
             if rec.list_id.state == 'done':
                 raise ValidationError(_('No se pueden eliminar ítems de una lista completada.'))
         return super().unlink()
+    
+    def action_toggle_purchased(self):
+        for rec in self:
+            # Validar que el usuario sea el responsable
+            rec.onchange_purchased()
+            # Alternar el estado
+            rec.purchased = not rec.purchased
+
+            if rec.purchased:
+                rec.purchased_by = self.env.user
+                rec.purchased_date = fields.Datetime.now()
+            else:
+                rec.purchased_by = False
+                rec.purchased_date = False
+
+            # Actualizar estado de la lista padre
+            parent = rec.list_id
+            if all(line.purchased for line in parent.line_ids):
+                parent.state = 'done'
+            elif parent.state == 'done':
+                parent.state = 'progress'

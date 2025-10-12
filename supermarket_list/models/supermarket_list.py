@@ -10,6 +10,7 @@ class SupermarketList(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(string='Nombre', required=True)
+    description = fields.Char(string='Descripción',)
     responsible_id = fields.Many2one('res.users',
                                      string='Responsable',
                                      required=True,

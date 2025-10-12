@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <list string="Listas de supermercado">
                 <field name="name"/>
+                <field name="description"/>
                 <field name="responsible_id"/>
                 <field name="state"/>
             </list>
@@ -22,24 +23,35 @@
             <form string="Lista de Supermercado">
                 <header>
                     <button name="action_set_draft" string="Pasar a Borrador" type="object" invisible="state in ['draft','done']"/>
-                    <button name="action_set_progress" string="Confirmar" type="object" invisible="state != 'draft'"/>
+                    <button name="action_set_progress" string="Confirmar"  class="btn-primary" type="object" invisible="state != 'draft'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
                 </header>
                 <sheet>
                     <group>
                         <field name="name" readonly="state in ['progress','done']"/>
-                        <field name="responsible_id" readonly="state in ['progress','done']"/>
+                        <field name="description" readonly="state in ['progress','done']"/>
+                        <field name="responsible_id" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Ítems">
-                            <field name="line_ids">
+                            <field name="line_ids" readonly="state in ['done']">
                                 <list editable="bottom">
                                     <field name="list_state" column_invisible="1"/>
                                     <field name="product_id" readonly="list_state in ['progress','done']"/>
                                     <field name="quantity" readonly="list_state in ['progress','done']"/>
-                                    <field name="purchased" readonly="list_state in ['draft','done']"/>
                                     <field name="purchased_by" readonly="1"/>
                                     <field name="purchased_date" readonly="1"/>
+                                    <!-- Botón dinámico -->
+                                    <button name="action_toggle_purchased"
+                                            string="Marcar compra"
+                                            type="object"
+                                            class="btn-primary"
+                                            invisible="purchased == True or list_state not in ['progress']"/>
+                                    <button name="action_toggle_purchased"
+                                            string="Regresar compra"
+                                            type="object"
+                                            class="btn-secondary"
+                                            invisible="purchased == False or list_state in ['done']"/>
                                 </list>
                             </field>
                         </page>
@@ -71,18 +83,65 @@
         </field>
     </record>
 
+    <!-- Kanban view -->
+    <record id="view_supermarket_list_kanban" model="ir.ui.view">
+        <field name="name">supermarket.list.kanban</field>
+        <field name="model">supermarket.list</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="state"/>
+                <field name="note"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_card"
+                            t-att-class="record.state.raw_value == 'done' and 'o_kanban_color_green' or record.state.raw_value == 'progress' and 'o_kanban_color_yellow' or 'o_kanban_color_gray'">
+
+                            <!-- Encabezado -->
+                            <div class="o_kanban_header d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex flex-column">
+                                    <strong class="text-lg fw-bold mb-1" t-esc="record.name.value"/>
+                                    <span class="badge align-self-start"
+                                        t-att-class="record.state.raw_value == 'done' and 'badge bg-success' or record.state.raw_value == 'progress' and 'badge bg-warning' or 'badge bg-secondary'">
+                                        <t t-esc="record.state.value"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Responsable -->
+                            <div class="o_kanban_body mt-2">
+                                <div class="d-flex align-items-center text-muted">
+                                    <i class="fa fa-user me-2"/>
+                                    <t t-if="record.responsible_id.value">
+                                        <span t-esc="record.responsible_id.value"/>
+                                    </t>
+                                    <t t-else="">
+                                        <em>Sin responsable</em>
+                                    </t>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- Acción general ver todas las listas -->
     <record id="action_supermarket_list_all" model="ir.actions.act_window">
         <field name="name">Todas las Listas</field>
         <field name="res_model">supermarket.list</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
     </record>
 
     <!-- Acción filtrada ver solo las del usuario actual -->
     <record id="action_supermarket_list_my" model="ir.actions.act_window">
         <field name="name">Mis Listas</field>
         <field name="res_model">supermarket.list</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('responsible_id', '=', uid)]</field>
     </record>
 
