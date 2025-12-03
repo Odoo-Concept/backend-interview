@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- List View of Shopping List Items -->
+        <record id="shopping_list_item_list_view" model="ir.ui.view">
+            <field name="name">shopping.list.item.list</field>
+            <field name="model">shopping.list.item</field>
+            <field name="arch" type="xml">
+                <list string="Shopping List Items">
+                    <field name="shopping_list_id" string="Shopping List"/>
+                    <field name="product_id" string="Product"/>
+                    <field name="quantity" string="Qty"/>
+                    <field name="unit_id" string="Unit"/>
+                    <field name="is_purchased" string="Purchased"/>
+                    <field name="responsible_id" string="Responsible"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View of Shopping List Item -->
+        <record id="shopping_list_item_form_view" model="ir.ui.view">
+            <field name="name">shopping.list.item.form</field>
+            <field name="model">shopping.list.item</field>
+            <field name="arch" type="xml">
+                <form string="Shopping List Item">
+                    <header>
+                        <button name="action_mark_purchased" type="object"
+                                string="Mark as Purchased" class="oe_highlight"
+                                invisible="is_purchased == True"/>
+                        <button name="action_mark_unpurchased" type="object"
+                                string="Mark as Unpurchased"
+                                invisible="is_purchased == False"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="shopping_list_id" required="1" />
+                                <field name="product_id" required="1"/>
+                                <field name="quantity" required="1"/>
+                                <field name="unit_id"/>
+                            </group>
+                            <group>
+                                <field name="responsible_id" readonly="1"/>
+                                <field name="is_purchased"/>
+                                <field name="purchased_date" readonly="1" force_save="1"/>
+                                <field name="list_state" readonly="1"/>
+                                <field name="quantity_done" readonly="1" force_save="1"/>
+                                <field name="unit_purchased_id" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Additional Information">
+                            <field name="notes" nolabel="1" colspan="2"
+                                   placeholder="Additional notes..."/>
+                        </group>
+                    </sheet>
+
+                    <!-- Chatter -->
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View of Shopping List Items -->
+        <record id="shopping_list_item_search_view" model="ir.ui.view">
+            <field name="name">shopping.list.item.search</field>
+            <field name="model">shopping.list.item</field>
+            <field name="arch" type="xml">
+                <search string="Shopping List Items">
+                    <field name="product_id" string="Product"/>
+                    <field name="shopping_list_id" string="Shopping List"/>
+
+                    <separator/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_list" string="Shopping List"
+                                context="{'group_by': 'shopping_list_id'}"/>
+                        <filter name="group_status" string="Purchased Status"
+                                context="{'group_by': 'is_purchased'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action to view Items -->
+        <record id="shopping_list_item_action" model="ir.actions.act_window">
+            <field name="name">Shopping List Items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shopping.list.item</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="shopping_list_item_list_view"/>
+            <field name="search_view_id" ref="shopping_list_item_search_view"/>
+        </record>
+</odoo>

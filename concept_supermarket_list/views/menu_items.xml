@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <!-- Menú Principal -->
+        <menuitem
+            id="shopping_list_menu_root"
+            name="Supermercado"
+            web_icon="concept_supermarket_list,static/description/icon.png"
+            sequence="10"/>
+
+        <!-- Submenú: Listas de Supermercado -->
+        <menuitem
+            id="shopping_list_menu_main"
+            name="Mis Listas"
+            parent="shopping_list_menu_root"
+            action="shopping_list_action"
+            sequence="10"/>
+
+        <!-- Submenú: Todos los Ítems -->
+        <menuitem
+            id="shopping_list_item_menu_main"
+            name="Todos los Ítems"
+            parent="shopping_list_menu_root"
+            action="shopping_list_item_action"
+            sequence="20"/>
+
+        <!-- Menú de Configuración (si quieres agregar más adelante) -->
+        <menuitem
+            id="shopping_list_menu_config"
+            name="Configuración"
+            parent="shopping_list_menu_root"
+            sequence="99"/>
+</odoo>

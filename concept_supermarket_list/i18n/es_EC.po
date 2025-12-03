@@ -1,0 +1,451 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* concept_supermarket_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-03 16:07+0000\n"
+"PO-Revision-Date: 2025-12-03 16:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_form_view
+msgid "Additional Information"
+msgstr "Información adicional"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__notes
+msgid "Additional notes about the product (brand, preferences, etc.)"
+msgstr "Notas adicionales sobre el producto (marca, preferencias, etc.)"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__description
+msgid "Additional notes or details about the shopping list"
+msgstr "Notas o detalles adicionales sobre la lista de compras"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_form_view
+msgid "Additional notes..."
+msgstr "Notas adicionales..."
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "Back to Draft"
+msgstr "Volver a borrador"
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list.py:0
+msgid "Cannot complete the list. There are still unpurchased products."
+msgstr "No se puede completar la lista. Aún hay productos sin comprar."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list.py:0
+msgid "Cannot mark the list as completed while there are unpurchased items."
+msgstr "No se puede marcar la lista como completada mientras haya artículos sin comprar."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list.py:0
+msgid "Cannot start a shopping list without items."
+msgstr "No se puede iniciar una lista de compras sin artículos."
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__is_purchased
+msgid "Check if the product has been purchased"
+msgstr "Verificar si el producto ha sido comprado"
+
+#. module: concept_supermarket_list
+#: model:ir.ui.menu,name:concept_supermarket_list.shopping_list_menu_config
+msgid "Configuración"
+msgstr "Configuración"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.actions.act_window,help:concept_supermarket_list.shopping_list_action
+msgid "Create your first shopping list"
+msgstr "Crea tu primera lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__create_date
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__create_date
+msgid "Created On"
+msgstr "Creado el"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__create_uid
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__state
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__list_state
+msgid "Current state of the shopping list"
+msgstr "Estado actual de la lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__purchased_date
+msgid "Date when item was marked as purchased"
+msgstr "Fecha en que el artículo fue marcado como comprado"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__name
+msgid "Descriptive name of the shopping list"
+msgstr "Nombre descriptivo de la lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__quantity
+msgid "Desired quantity of the product"
+msgstr "Cantidad deseada del producto"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__display_name
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__sequence
+msgid "Display order in the list"
+msgstr "Orden de visualización en la lista"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields.selection,name:concept_supermarket_list.selection__shopping_list__state__completed
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Done"
+msgstr "Completado"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields.selection,name:concept_supermarket_list.selection__shopping_list__state__draft
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__id
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__id
+msgid "ID"
+msgstr "ID"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields.selection,name:concept_supermarket_list.selection__shopping_list__state__in_progress
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "In Progress"
+msgstr "En progreso"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__item_ids
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "Items"
+msgstr "Ítems"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__write_date
+msgid "Last Modified On"
+msgstr "Última modificación"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__write_uid
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "List Name..."
+msgstr "Nombre de la lista..."
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__responsible_id
+msgid "List Responsible"
+msgstr "Responsable de la lista"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__list_state
+msgid "List State"
+msgstr "Estado de la lista"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_form_view
+msgid "Mark as Purchased"
+msgstr "Marcar como comprado"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_form_view
+msgid "Mark as Unpurchased"
+msgstr "Marcar como no comprado"
+
+#. module: concept_supermarket_list
+#: model:ir.ui.menu,name:concept_supermarket_list.shopping_list_menu_main
+msgid "Mis Listas"
+msgstr "Mis Listas"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "My Lists"
+msgstr "Mis listas"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__name
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Name"
+msgstr "Nombre"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__product_name
+msgid "Name of the product to purchase"
+msgstr "Nombre del producto a comprar"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+msgid "Not Purchased"
+msgstr "No comprado"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__notes
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "Notes"
+msgstr "Notas"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__purchased_items
+msgid "Number of products marked as purchased"
+msgstr "Número de productos marcados como comprados"
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list_item.py:0
+msgid "Only the list responsible can delete items."
+msgstr "Solo el responsable de la lista puede eliminar ítems."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list_item.py:0
+msgid "Only the list responsible can mark items as purchased."
+msgstr "Solo el responsable de la lista puede marcar ítems como comprados."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list_item.py:0
+msgid "Only the list responsible can modify items."
+msgstr "Solo el responsable de la lista puede modificar ítems."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list.py:0
+msgid "Only the responsible user can delete this shopping list."
+msgstr "Solo el usuario responsable puede eliminar esta lista de compras."
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list.py:0
+msgid "Only the responsible user can modify this shopping list."
+msgstr "Solo el usuario responsable puede modificar esta lista de compras."
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__progress_percentage
+msgid "Percentage of items purchased"
+msgstr "Porcentaje de ítems comprados"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__product_name
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+msgid "Product"
+msgstr "Producto"
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list_item.py:0
+msgid "Product name cannot be empty."
+msgstr "El nombre del producto no puede estar vacío."
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__progress_percentage
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+msgid "Progress %"
+msgstr "Progreso %"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__is_purchased
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+msgid "Purchased"
+msgstr "Comprado"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__purchased_items
+msgid "Purchased Items"
+msgstr "Ítems comprados"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__purchased_date
+msgid "Purchased On"
+msgstr "Comprado el"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+msgid "Purchased Status"
+msgstr "Estado de compra"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+msgid "Qty"
+msgstr "Cant."
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: concept_supermarket_list
+#. odoo-python
+#: code:addons/concept_supermarket_list/models/shopping_list_item.py:0
+msgid "Quantity must be greater than 0."
+msgstr "La cantidad debe ser mayor que 0."
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "Reset"
+msgstr "Restablecer"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__responsible_id
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: concept_supermarket_list
+#: model:ir.model,name:concept_supermarket_list.model_shopping_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__shopping_list_id
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+msgid "Shopping List"
+msgstr "Lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.model,name:concept_supermarket_list.model_shopping_list_item
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_form_view
+msgid "Shopping List Item"
+msgstr "Ítem de lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.actions.act_window,name:concept_supermarket_list.shopping_list_item_action
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_search_view
+msgid "Shopping List Items"
+msgstr "Ítems de lista de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.actions.act_window,name:concept_supermarket_list.shopping_list_action
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "Shopping Lists"
+msgstr "Listas de compras"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__item_ids
+msgid "Shopping items/products in this list"
+msgstr "Artículos/productos de esta lista"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__shopping_list_id
+msgid "Shopping list this item belongs to"
+msgstr "Lista de compras a la que pertenece este ítem"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.actions.act_window,help:concept_supermarket_list.shopping_list_action
+msgid "Shopping lists help you organize your purchases efficiently."
+msgstr "Las listas de compras te ayudan a organizar tus compras de forma eficiente."
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_form_view
+msgid "Start"
+msgstr "Iniciar"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__state
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_search_view
+msgid "State"
+msgstr "Estado"
+
+#. module: concept_supermarket_list
+#: model:ir.ui.menu,name:concept_supermarket_list.shopping_list_menu_root
+msgid "Supermercado"
+msgstr "Supermercado"
+
+#. module: concept_supermarket_list
+#: model:ir.ui.menu,name:concept_supermarket_list.shopping_list_item_menu_main
+msgid "Todos los Ítems"
+msgstr "Todos los Ítems"
+
+#. module: concept_supermarket_list
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_list_view
+msgid "Total"
+msgstr "Total"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list__total_items
+msgid "Total Items"
+msgstr "Total de ítems"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__total_items
+msgid "Total number of products on the list"
+msgstr "Número total de productos en la lista"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,field_description:concept_supermarket_list.field_shopping_list_item__unit
+#: model_terms:ir.ui.view,arch_db:concept_supermarket_list.shopping_list_item_list_view
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__unit
+msgid "Unit of measurement (kg, liters, units, etc.)"
+msgstr "Unidad de medida (kg, litros, unidades, etc.)"
+
+#. module: concept_supermarket_list
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list__responsible_id
+#: model:ir.model.fields,help:concept_supermarket_list.field_shopping_list_item__responsible_id
+msgid "User responsible for this shopping list"
+msgstr "Usuario responsable de esta lista de compras"
