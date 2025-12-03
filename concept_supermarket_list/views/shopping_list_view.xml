@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- List View for Shopping Lists -->
     <record id="shopping_list_list_view" model="ir.ui.view">
@@ -6,9 +6,9 @@
         <field name="model">shopping.list</field>
         <field name="arch" type="xml">
             <list string="Shopping Lists">
-                <field name="name" string="Name"/>
-                <field name="responsible_id" string="Responsible"/>
-                <field name="state" string="State"/>
+                <field name="name" string="Name" />
+                <field name="responsible_id" string="Responsible" />
+                <field name="state" string="State" />
             </list>
         </field>
     </record>
@@ -21,69 +21,112 @@
             <form string="Shopping List">
                 <!-- Header with Action Buttons -->
                 <header>
-                    <button name="action_in_progress" type="object"
-                            string="Start" class="oe_highlight"
-                            invisible="state != 'draft'"/>
-                    <button name="action_completed" type="object"
-                            string="Done" class="oe_highlight"
-                            invisible="state != 'in_progress'"/>
-                    <button name="action_draft" type="object"
-                            string="Back to Draft"
-                            invisible="state == 'draft'"/>
-                    <button name="action_reset" type="object"
-                            string="Reset"
-                            invisible="state != 'completed'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                    <button
+                        name="action_in_progress"
+                        type="object"
+                        string="Start"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_completed"
+                        type="object"
+                        string="Done"
+                        class="oe_highlight"
+                        invisible="state != 'in_progress'"
+                    />
+                    <button
+                        name="action_draft"
+                        type="object"
+                        string="Back to Draft"
+                        invisible="state == 'draft'"
+                    />
+                    <button
+                        name="action_reset"
+                        type="object"
+                        string="Reset"
+                        invisible="state != 'completed'"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_progress,completed"
+                    />
                 </header>
 
                 <sheet>
                     <!-- Title -->
                     <div class="oe_title">
                         <h1>
-                            <field name="name" placeholder="List Name..."
-                                   class="oe_inline"/>
+                            <field
+                                name="name"
+                                placeholder="List Name..."
+                                class="oe_inline"
+                            />
                         </h1>
                     </div>
 
                     <!-- Responsible -->
                     <group>
-                        <field name="responsible_id" required="1" readonly="state != 'draft'"/>
+                        <field
+                            name="responsible_id"
+                            required="1"
+                            readonly="state != 'draft'"
+                        />
                     </group>
 
                     <!-- Items Section -->
                     <notebook>
                         <page name="items_page" string="Items">
-                            <field name="item_ids" nolabel="1" readonly="state == 'completed'">
+                            <field
+                                name="item_ids"
+                                nolabel="1"
+                                readonly="state == 'completed'"
+                            >
                                 <list editable="bottom">
-                                    <field name="product_id" string="Product"
-                                           readonly="parent.state != 'draft'"
-                                           required="1"/>
-                                    <field name="quantity" string="Qty"
-                                           readonly="parent.state != 'draft'"
-                                           required="1"/>
-                                    <field name="unit_id" string="Unit"
+                                    <field
+                                        name="product_id"
+                                        string="Product"
+                                        readonly="parent.state != 'draft'"
+                                        required="1"
+                                    />
+                                    <field
+                                        name="quantity"
+                                        string="Qty"
+                                        readonly="parent.state != 'draft'"
+                                        required="1"
+                                    />
+                                    <field
+                                        name="unit_id"
+                                        string="Unit"
                                         readonly="parent.state != 'draft'"
                                     />
-                                    <field name="is_purchased" string="Purchased"/>
-                                    <field name="quantity_done"
-                                           column_invisible="parent.state == 'draft'"
-                                           force_save="1"
+                                    <field name="is_purchased" string="Purchased" />
+                                    <field
+                                        name="quantity_done"
+                                        column_invisible="parent.state == 'draft'"
+                                        force_save="1"
                                     />
-                                    <field name="unit_purchased_id"
-                                           force_save="1"
-                                           column_invisible="parent.state == 'draft'"
+                                    <field
+                                        name="unit_purchased_id"
+                                        force_save="1"
+                                        column_invisible="parent.state == 'draft'"
                                     />
                                 </list>
                             </field>
                         </page>
                         <page name="notes_page" string="Notes">
-                            <field name="description" nolabel="1" placeholder="Write your notes here...."/>
+                            <field
+                                name="description"
+                                nolabel="1"
+                                placeholder="Write your notes here...."
+                            />
                         </page>
                     </notebook>
                 </sheet>
 
                 <!-- Chatter -->
-                <chatter/>
+                <chatter />
             </form>
         </field>
     </record>
@@ -94,30 +137,48 @@
         <field name="model">shopping.list</field>
         <field name="arch" type="xml">
             <search string="Shopping Lists">
-                <field name="name" string="Name"/>
-                <field name="responsible_id" string="Responsible"/>
+                <field name="name" string="Name" />
+                <field name="responsible_id" string="Responsible" />
 
-                <separator/>
+                <separator />
 
-                <filter name="filter_draft" string="Draft"
-                        domain="[('state', '=', 'draft')]"/>
-                <filter name="filter_in_progress" string="In Progress"
-                        domain="[('state', '=', 'in_progress')]"/>
-                <filter name="filter_completed" string="Done"
-                        domain="[('state', '=', 'completed')]"/>
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="filter_in_progress"
+                    string="In Progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter
+                    name="filter_completed"
+                    string="Done"
+                    domain="[('state', '=', 'completed')]"
+                />
 
-                <separator/>
+                <separator />
 
-                <filter name="filter_my_lists" string="My Lists"
-                        domain="[('responsible_id', '=', uid)]"/>
+                <filter
+                    name="filter_my_lists"
+                    string="My Lists"
+                    domain="[('responsible_id', '=', uid)]"
+                />
 
-                <separator/>
+                <separator />
 
                 <group expand="0" string="Group By">
-                    <filter name="group_responsible" string="Responsible"
-                            context="{'group_by': 'responsible_id'}"/>
-                    <filter name="group_state" string="State"
-                            context="{'group_by': 'state'}"/>
+                    <filter
+                        name="group_responsible"
+                        string="Responsible"
+                        context="{'group_by': 'responsible_id'}"
+                    />
+                    <filter
+                        name="group_state"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
                 </group>
             </search>
         </field>
@@ -129,8 +190,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">shopping.list</field>
         <field name="view_mode">list,form</field>
-        <field name="view_id" ref="shopping_list_list_view"/>
-        <field name="search_view_id" ref="shopping_list_search_view"/>
+        <field name="view_id" ref="shopping_list_list_view" />
+        <field name="search_view_id" ref="shopping_list_search_view" />
         <field name="context">{'search_default_filter_my_lists': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
