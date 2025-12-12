@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.AddProductButton">
+        <button
+            t-if="isVisible"
+            type="button"
+            class="btn btn-sm btn-primary"
+            id="add_product_btn"
+            data-bs-toggle="modal"
+            data-bs-target="#addProductModal"
+        >
+            <i class="fa fa-plus me-1" /> Add Product
+        </button>
+    </t>
+</templates>

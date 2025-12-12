@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Weekly Shopping List - Draft -->
+    <record id="demo_list_weekly_shopping" model="grocery.list">
+        <field name="name">Weekly Shopping</field>
+        <field name="store_id" ref="demo_store_walmart" />
+        <field name="responsible_id" ref="base.demo_user0" />
+        <field name="state">draft</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_list_line_weekly_milk" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekly_shopping" />
+        <field name="grocery_product_id" ref="demo_product_milk" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record id="demo_list_line_weekly_eggs" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekly_shopping" />
+        <field name="grocery_product_id" ref="demo_product_eggs" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record id="demo_list_line_weekly_bread" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekly_shopping" />
+        <field name="grocery_product_id" ref="demo_product_bread" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="30" />
+    </record>
+
+    <record id="demo_list_line_weekly_bananas" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekly_shopping" />
+        <field name="grocery_product_id" ref="demo_product_bananas" />
+        <field name="quantity" eval="3.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record id="demo_list_line_weekly_tomatoes" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekly_shopping" />
+        <field name="grocery_product_id" ref="demo_product_tomatoes" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="50" />
+    </record>
+
+    <!-- Weekend Shopping List - In Progress -->
+    <record id="demo_list_weekend_shopping" model="grocery.list">
+        <field name="name">Weekend Shopping</field>
+        <field name="store_id" ref="demo_store_carrefour" />
+        <field name="responsible_id" ref="base.demo_user0" />
+        <field name="state">in_progress</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_list_line_weekend_chicken" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekend_shopping" />
+        <field name="grocery_product_id" ref="demo_product_chicken_breast" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record id="demo_list_line_weekend_salmon" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekend_shopping" />
+        <field name="grocery_product_id" ref="demo_product_salmon" />
+        <field name="quantity" eval="1.5" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record id="demo_list_line_weekend_lettuce" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekend_shopping" />
+        <field name="grocery_product_id" ref="demo_product_lettuce" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="30" />
+    </record>
+
+    <record id="demo_list_line_weekend_carrots" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekend_shopping" />
+        <field name="grocery_product_id" ref="demo_product_carrots" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record id="demo_list_line_weekend_orange_juice" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_weekend_shopping" />
+        <field name="grocery_product_id" ref="demo_product_orange_juice" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="50" />
+    </record>
+
+    <!-- Completed Shopping List -->
+    <record id="demo_list_completed_shopping" model="grocery.list">
+        <field name="name">Completed Shopping</field>
+        <field name="store_id" ref="demo_store_local_market" />
+        <field name="responsible_id" ref="base.demo_user0" />
+        <field name="state">done</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_list_line_completed_coffee" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_completed_shopping" />
+        <field name="grocery_product_id" ref="demo_product_coffee" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record id="demo_list_line_completed_cheese" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_completed_shopping" />
+        <field name="grocery_product_id" ref="demo_product_cheese" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record id="demo_list_line_completed_apples" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_completed_shopping" />
+        <field name="grocery_product_id" ref="demo_product_apples" />
+        <field name="quantity" eval="3.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="30" />
+    </record>
+
+    <record id="demo_list_line_completed_pasta" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_completed_shopping" />
+        <field name="grocery_product_id" ref="demo_product_pasta" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="True" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <!-- Party Shopping List -->
+    <record id="demo_list_party_shopping" model="grocery.list">
+        <field name="name">Party Shopping</field>
+        <field name="store_id" ref="demo_store_whole_foods" />
+        <field name="responsible_id" ref="base.demo_user0" />
+        <field name="state">draft</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_list_line_party_water" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_party_shopping" />
+        <field name="grocery_product_id" ref="demo_product_water" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record id="demo_list_line_party_strawberries" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_party_shopping" />
+        <field name="grocery_product_id" ref="demo_product_strawberries" />
+        <field name="quantity" eval="3.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record id="demo_list_line_party_croissants" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_party_shopping" />
+        <field name="grocery_product_id" ref="demo_product_croissants" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="30" />
+    </record>
+
+    <record id="demo_list_line_party_yogurt" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_party_shopping" />
+        <field name="grocery_product_id" ref="demo_product_yogurt" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <!-- Bulk Shopping List -->
+    <record id="demo_list_bulk_shopping" model="grocery.list">
+        <field name="name">Bulk Shopping</field>
+        <field name="store_id" ref="demo_store_costco" />
+        <field name="responsible_id" ref="base.demo_user0" />
+        <field name="state">draft</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_list_line_bulk_rice" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_bulk_shopping" />
+        <field name="grocery_product_id" ref="demo_product_rice" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record id="demo_list_line_bulk_flour" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_bulk_shopping" />
+        <field name="grocery_product_id" ref="demo_product_flour" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record id="demo_list_line_bulk_sugar" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_bulk_shopping" />
+        <field name="grocery_product_id" ref="demo_product_sugar" />
+        <field name="quantity" eval="1.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="30" />
+    </record>
+
+    <record id="demo_list_line_bulk_olive_oil" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_bulk_shopping" />
+        <field name="grocery_product_id" ref="demo_product_olive_oil" />
+        <field name="quantity" eval="2.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record id="demo_list_line_bulk_ground_beef" model="grocery.list.line">
+        <field name="list_id" ref="demo_list_bulk_shopping" />
+        <field name="grocery_product_id" ref="demo_product_ground_beef" />
+        <field name="quantity" eval="3.0" />
+        <field name="is_purchased" eval="False" />
+        <field name="sequence" eval="50" />
+    </record>
+</odoo>

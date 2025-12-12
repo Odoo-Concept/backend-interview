@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Grocery List Line List View -->
+    <record id="grocery_list_line_view_tree" model="ir.ui.view">
+        <field name="name">grocery.list.line.list</field>
+        <field name="model">grocery.list.line</field>
+        <field name="arch" type="xml">
+            <list string="Grocery List Lines">
+                <field name="list_id" />
+                <field name="grocery_product_id" />
+                <field name="quantity" />
+                <field name="uom_id" />
+                <field
+                    name="is_purchased"
+                    widget="boolean_toggle"
+                    decoration-success="is_purchased == True"
+                    decoration-muted="is_purchased == False"
+                />
+                <field name="sequence" widget="handle" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Grocery List Line Form View -->
+    <record id="grocery_list_line_view_form" model="ir.ui.view">
+        <field name="name">grocery.list.line.form</field>
+        <field name="model">grocery.list.line</field>
+        <field name="arch" type="xml">
+            <form string="Grocery List Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="list_id" options="{'no_create': True}" />
+                            <field
+                                name="grocery_product_id"
+                                options="{'no_create': True, 'no_create_edit': True}"
+                            />
+                        </group>
+                        <group>
+                            <field name="quantity" />
+                            <field name="uom_id" />
+                            <field name="sequence" />
+                            <field name="is_purchased" widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <group>
+                        <field
+                            name="notes"
+                            placeholder="Additional notes about this product..."
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Grocery List Line Search View -->
+    <record id="grocery_list_line_view_search" model="ir.ui.view">
+        <field name="name">grocery.list.line.search</field>
+        <field name="model">grocery.list.line</field>
+        <field name="arch" type="xml">
+            <search string="Grocery List Lines">
+                <field name="list_id" />
+                <field name="grocery_product_id" />
+                <field name="product_name" />
+                <separator />
+                <filter
+                    string="Purchased"
+                    name="purchased"
+                    domain="[('is_purchased', '=', True)]"
+                />
+                <filter
+                    string="Not Purchased"
+                    name="not_purchased"
+                    domain="[('is_purchased', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="List"
+                        name="group_list"
+                        context="{'group_by': 'list_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="group_product"
+                        context="{'group_by': 'grocery_product_id'}"
+                    />
+                    <filter
+                        string="Purchased"
+                        name="group_purchased"
+                        context="{'group_by': 'is_purchased'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Grocery List Line Action -->
+    <record id="action_grocery_list_line" model="ir.actions.act_window">
+        <field name="name">Grocery List Lines</field>
+        <field name="res_model">grocery.list.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="grocery_list_line_view_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    No list lines found
+                </p>
+            <p>
+                    List lines are created when you add products to a grocery list.
+                </p>
+        </field>
+    </record>
+</odoo>

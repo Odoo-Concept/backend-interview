@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Add entry to portal home -->
+    <template
+        id="portal_my_home_grocery_lists"
+        name="Grocery Lists"
+        inherit_id="portal.portal_my_home"
+        priority="50"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True" />
+        </xpath>
+        <div id="portal_service_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/web/static/img/folder.svg'" />
+                <t t-set="title">Grocery Lists</t>
+                <t t-set="text">Manage your shopping lists</t>
+                <t t-set="url" t-value="'/my/grocery-lists'" />
+                <t t-set="placeholder_count" t-value="'grocery_list_count'" />
+                <t t-set="config_card" t-value="True" />
+            </t>
+        </div>
+    </template>
+
+    <!-- Add breadcrumbs for grocery lists -->
+    <template
+        id="portal_breadcrumbs_grocery_lists"
+        name="Portal layout: grocery lists menu entry"
+        inherit_id="portal.portal_breadcrumbs"
+        priority="50"
+    >
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li
+                t-if="page_name == 'grocery_list' or grocery_list"
+                t-attf-class="breadcrumb-item #{'active ' if not grocery_list else ''}"
+            >
+                <a
+                    t-if="grocery_list"
+                    t-attf-href="/my/grocery-lists?{{ keep_query() }}"
+                >Grocery
+                        Lists</a>
+                <t t-else="">Grocery Lists</t>
+            </li>
+            <li t-if="grocery_list" class="breadcrumb-item active text-truncate">
+                <span t-field="grocery_list.name" />
+            </li>
+        </xpath>
+    </template>
+
+    <!-- List of grocery lists -->
+    <template id="portal_my_grocery_lists" name="My Grocery Lists">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Grocery Lists</t>
+                <t t-set="searchbar_sortings" t-value="searchbar_sortings" />
+                <t t-set="sortby" t-value="sortby" />
+                <t t-set="searchbar_filters" t-value="searchbar_filters" />
+                <t t-set="filterby" t-value="filterby" />
+                <t t-set="default_url" t-value="default_url" />
+            </t>
+
+            <div
+                class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3"
+            >
+                <h3 class="mb-0">My Grocery Lists</h3>
+                <a href="/my/grocery-lists/new" class="btn btn-primary w-100 w-md-auto">
+                        <i class="fa fa-plus me-1" /> New List </a>
+            </div>
+
+            <t t-if="not lists">
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-0">You don't have any grocery lists yet.</p>
+                    <a
+                        href="/my/grocery-lists/new"
+                        class="btn btn-sm btn-primary mt-2"
+                    >Create
+                            your first list</a>
+                </div>
+            </t>
+
+            <t t-if="lists">
+                <!-- Mobile Card View -->
+                <div class="d-block d-md-none">
+                    <div class="list-group">
+                        <a
+                            t-foreach="lists"
+                            t-as="grocery_list"
+                            t-attf-href="/my/grocery-lists/#{grocery_list.id}"
+                            class="list-group-item list-group-item-action grocery-list-card-mobile"
+                        >
+                            <div
+                                class="d-flex justify-content-between align-items-start mb-2"
+                            >
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-1 text-dark">
+                                        <span t-field="grocery_list.name" />
+                                    </h5>
+                                    <p class="text-muted mb-1 small">
+                                        <i class="fa fa-store me-1" />
+                                        <span t-field="grocery_list.store_id.name" />
+                                    </p>
+                                    <span
+                                        t-attf-class="badge badge-pill mb-2
+                                            #{'bg-success' if grocery_list.state == 'done' else ''}
+                                            #{'bg-info' if grocery_list.state == 'in_progress' else ''}
+                                            #{'bg-secondary' if grocery_list.state == 'draft' else ''}"
+                                    >
+                                        <t
+                                            t-esc="grocery_list.state == 'done' and 'Completed' or (grocery_list.state == 'in_progress' and 'In Progress' or 'Draft')"
+                                        />
+                                    </span>
+                                </div>
+                                <i class="fa fa-chevron-right text-muted ms-2 mt-1" />
+                            </div>
+                            <div class="mb-2">
+                                <div
+                                    class="d-flex justify-content-between align-items-center mb-1"
+                                >
+                                    <small class="text-muted">Progress</small>
+                                    <small class="fw-bold">
+                                            <t
+                                        t-esc="grocery_list.purchased_items"
+                                    />/<t t-esc="grocery_list.total_items" />
+                                        </small>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div
+                                        t-attf-class="progress-bar
+                                            #{'bg-success' if grocery_list.state == 'done' else 'bg-info'}"
+                                        t-attf-role="progressbar"
+                                        t-attf-style="width: #{grocery_list.progress}%"
+                                        t-attf-aria-valuenow="#{grocery_list.progress}"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                    >
+                                            <t t-esc="int(grocery_list.progress)" />%
+                                        </div>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex justify-content-between align-items-center"
+                            >
+                                <small class="text-muted">
+                                    <span
+                                        t-field="grocery_list.date_created"
+                                        t-options="{'widget': 'date'}"
+                                    />
+                                </small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Desktop Table View -->
+                <div class="d-none d-md-block">
+                    <t t-call="portal.portal_table">
+                        <thead>
+                            <tr>
+                                <th>List Name</th>
+                                <th>Store</th>
+                                <th>State</th>
+                                <th>Progress</th>
+                                <th>Items</th>
+                                <th>Created</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="lists" t-as="grocery_list">
+                                <td>
+                                    <a
+                                        t-attf-href="/my/grocery-lists/#{grocery_list.id}"
+                                    >
+                                        <span t-field="grocery_list.name" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <span t-field="grocery_list.store_id.name" />
+                                </td>
+                                <td>
+                                    <span
+                                        t-attf-class="badge badge-pill
+                                            #{'bg-success' if grocery_list.state == 'done' else ''}
+                                            #{'bg-info' if grocery_list.state == 'in_progress' else ''}
+                                            #{'bg-secondary' if grocery_list.state == 'draft' else ''}"
+                                    >
+                                        <t
+                                            t-esc="grocery_list.state == 'done' and 'Completed' or (grocery_list.state == 'in_progress' and 'In Progress' or 'Draft')"
+                                        />
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="min-width: 100px;">
+                                        <div
+                                            t-attf-class="progress-bar
+                                                #{'bg-success' if grocery_list.state == 'done' else 'bg-info'}"
+                                            t-attf-role="progressbar"
+                                            t-attf-style="width: #{grocery_list.progress}%"
+                                            t-attf-aria-valuenow="#{grocery_list.progress}"
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                        >
+                                                <t
+                                            t-esc="int(grocery_list.progress)"
+                                        />% </div>
+                                    </div>
+                                </td>
+                                <td>
+                                        <t t-esc="grocery_list.purchased_items" />/<t
+                                    t-esc="grocery_list.total_items"
+                                />
+                                    </td>
+                                <td>
+                                    <span
+                                        t-field="grocery_list.date_created"
+                                        t-options="{'widget': 'date'}"
+                                    />
+                                </td>
+                                <td class="text-end">
+                                    <a
+                                        t-attf-href="/my/grocery-lists/#{grocery_list.id}"
+                                        class="btn btn-sm btn-outline-primary"
+                                    >
+                                            <i class="fa fa-eye" /> View </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </t>
+                </div>
+            </t>
+
+            <t t-if="pager and pager.get('page_count', 0) > 1">
+                <div class="o_portal_pager d-flex justify-content-center my-3">
+                    <t t-call="portal.pager" />
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Create new grocery list form -->
+    <template id="portal_grocery_list_new" name="New Grocery List">
+        <t t-call="portal.portal_layout">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+                    <h3 class="mb-3 mb-md-4">Create New Grocery List</h3>
+
+                    <t t-if="error">
+                        <div class="alert alert-danger" role="alert">
+                            <t t-esc="error_message or error" />
+                        </div>
+                    </t>
+
+                    <form
+                        method="post"
+                        action="/my/grocery-lists/new"
+                        class="grocery-list-form"
+                    >
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                        />
+
+                        <div class="mb-3">
+                            <label for="store_name" class="form-label">Store <span
+                                class="text-danger"
+                            >*</span></label>
+                            <owl-component
+                                name="website_supermarket_list.StoreAutocompleteComponent"
+                                t-att-props="json.dumps({})"
+                            />
+                            <small
+                                class="form-text text-muted"
+                            >Type to search existing stores
+                                    or create a new one</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="list_name" class="form-label">List Name <span
+                                class="text-danger"
+                            >*</span></label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="list_name"
+                                name="list_name"
+                                t-att-value="list_name"
+                                placeholder="e.g., Weekly Shopping, Christmas List"
+                                required="required"
+                            />
+                        </div>
+
+                        <div
+                            class="d-flex flex-column flex-md-row justify-content-between gap-2"
+                        >
+                            <a
+                                href="/my/grocery-lists"
+                                class="btn btn-secondary w-100 w-md-auto order-2 order-md-1"
+                            >Cancel</a>
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100 w-md-auto order-1 order-md-2"
+                            >Create List</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- View/Edit grocery list -->
+    <template id="portal_grocery_list" name="Grocery List">
+        <t t-call="portal.portal_layout">
+            <div class="grocery-list-detail">
+                <!-- Header -->
+                <div
+                    class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 mb-md-4"
+                >
+                    <div class="mb-2 mb-md-0">
+                        <h3 class="mb-1" t-field="grocery_list.name" />
+                        <p class="text-muted mb-0">
+                            <i class="fa fa-store me-1" />
+                            <span t-field="grocery_list.store_id.name" />
+                        </p>
+                    </div>
+                    <div class="text-start text-md-end">
+                        <span
+                            t-attf-class="badge badge-pill
+                                #{'bg-success' if grocery_list.state == 'done' else ''}
+                                #{'bg-info' if grocery_list.state == 'in_progress' else ''}
+                                #{'bg-secondary' if grocery_list.state == 'draft' else ''}"
+                        >
+                            <t
+                                t-esc="grocery_list.state == 'done' and 'Completed' or (grocery_list.state == 'in_progress' and 'In Progress' or 'Draft')"
+                            />
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <owl-component
+                    name="website_supermarket_list.GroceryListProgress"
+                    t-att-props="json.dumps({
+                            'listId': grocery_list.id,
+                            'initialProgress': grocery_list.progress,
+                            'initialPurchasedItems': grocery_list.purchased_items,
+                            'initialTotalItems': grocery_list.total_items
+                        })"
+                />
+
+                <!-- Error Messages -->
+                <t t-if="request.params.get('error')">
+                    <div
+                        class="alert alert-danger alert-dismissible fade show"
+                        role="alert"
+                    >
+                        <t t-esc="request.params.get('error')" />
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"
+                        />
+                    </div>
+                </t>
+
+                <!-- Actions -->
+                <div class="d-flex flex-column flex-md-row gap-2 gap-md-2 mb-3 mb-md-4">
+                    <t t-if="grocery_list.state == 'draft'">
+                        <owl-component
+                            name="website_supermarket_list.StartShoppingButton"
+                            t-att-props="json.dumps({
+                                    'listId': grocery_list.id,
+                                    'initialTotalItems': grocery_list.total_items,
+                                    'mode': mode
+                                })"
+                        />
+                    </t>
+                    <t t-if="grocery_list.state == 'in_progress'">
+                        <div class="w-100 w-md-auto">
+                            <owl-component
+                                name="website_supermarket_list.CompleteListButton"
+                                t-att-props="json.dumps({
+                                        'listId': grocery_list.id,
+                                        'initialPendingItems': grocery_list.pending_items,
+                                        'initialTotalItems': grocery_list.total_items,
+                                        'mode': mode
+                                    })"
+                            />
+                        </div>
+                    </t>
+                    <a
+                        t-attf-href="/my/grocery-lists/#{grocery_list.id}?mode=edit"
+                        class="btn btn-outline-secondary w-100 w-md-auto"
+                        t-attf-invisible="#{grocery_list.state == 'done' or grocery_list.state == 'in_progress'}"
+                    >
+                            <i class="fa fa-edit me-1" /> Edit </a>
+                    <a
+                        href="/my/grocery-lists"
+                        class="btn btn-outline-secondary w-100 w-md-auto"
+                    >
+                            <i class="fa fa-arrow-left me-1" /> Back to Lists </a>
+                </div>
+
+                <!-- Products List -->
+                <div class="card">
+                    <div
+                        class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2"
+                    >
+                        <h5 class="mb-0">Products</h5>
+                        <owl-component
+                            name="website_supermarket_list.AddProductButton"
+                            t-att-props="json.dumps({
+                                    'listState': grocery_list.state
+                                })"
+                        />
+                    </div>
+                    <div class="card-body p-0">
+                        <t t-if="not grocery_list.line_ids">
+                            <div class="alert alert-info m-3 mb-0">
+                                <p class="mb-0">No products in this list yet.</p>
+                            </div>
+                        </t>
+                        <t t-if="grocery_list.line_ids">
+                            <form
+                                method="post"
+                                t-attf-action="/my/grocery-lists/#{grocery_list.id}/update-lines"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    t-att-value="request.csrf_token()"
+                                />
+                                <input type="hidden" name="mode" t-att-value="mode" />
+
+                                <!-- Mobile Card View -->
+                                <div class="d-block d-md-none">
+                                    <div class="list-group list-group-flush">
+                                        <div
+                                            t-foreach="grocery_list.line_ids.sorted('sequence')"
+                                            t-as="line"
+                                            class="list-group-item border-bottom"
+                                        >
+                                            <div
+                                                class="d-flex justify-content-between align-items-start mb-2"
+                                            >
+                                                <div class="flex-grow-1">
+                                                    <div
+                                                        class="d-flex align-items-center gap-2 mb-1"
+                                                    >
+                                                        <i
+                                                            class="fa fa-grip-vertical text-muted"
+                                                            style="cursor: move;"
+                                                        />
+                                                        <strong
+                                                            class="text-truncate"
+                                                            t-field="line.grocery_product_id.name"
+                                                        />
+                                                    </div>
+                                                    <t
+                                                        t-if="line.grocery_product_id.category"
+                                                    >
+                                                        <small
+                                                            class="text-muted d-block"
+                                                            t-field="line.grocery_product_id.category"
+                                                        />
+                                                    </t>
+                                                </div>
+                                                <div
+                                                    class="d-flex align-items-center gap-2"
+                                                >
+                                                    <owl-component
+                                                        name="website_supermarket_list.TogglePurchased"
+                                                        t-att-props="json.dumps({
+                                                                'listId': grocery_list.id,
+                                                                'lineId': line.id,
+                                                                'initialChecked': line.is_purchased,
+                                                                'disabled': grocery_list.state == 'done'
+                                                            })"
+                                                    />
+                                                    <t
+                                                        t-if="mode == 'edit' and grocery_list.state == 'draft' and grocery_list.state != 'done'"
+                                                    >
+                                                        <form
+                                                            method="post"
+                                                            t-attf-action="/my/grocery-lists/#{grocery_list.id}/delete-line"
+                                                            style="display: inline;"
+                                                        >
+                                                            <input
+                                                                type="hidden"
+                                                                name="csrf_token"
+                                                                t-att-value="request.csrf_token()"
+                                                            />
+                                                            <input
+                                                                type="hidden"
+                                                                t-attf-name="line_id"
+                                                                t-att-value="line.id"
+                                                            />
+                                                            <input
+                                                                type="hidden"
+                                                                name="mode"
+                                                                t-att-value="mode"
+                                                            />
+                                                            <button
+                                                                type="submit"
+                                                                class="btn btn-sm btn-link text-danger p-0"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-trash"
+                                                                />
+                                                            </button>
+                                                        </form>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="col-6">
+                                                    <label
+                                                        class="form-label small text-muted mb-1"
+                                                    >Quantity</label>
+                                                    <t
+                                                        t-if="mode == 'edit' and grocery_list.state == 'draft'"
+                                                    >
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            t-att-value="line.quantity"
+                                                            step="0.01"
+                                                            min="0.01"
+                                                            t-attf-name="quantity_#{line.id}"
+                                                        />
+                                                    </t>
+                                                    <t t-else="">
+                                                        <div class="fw-bold">
+                                                            <t t-esc="line.quantity" />
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label
+                                                        class="form-label small text-muted mb-1"
+                                                    >Unit</label>
+                                                    <t
+                                                        t-if="mode == 'edit' and grocery_list.state == 'draft'"
+                                                    >
+                                                        <select
+                                                            class="form-select form-select-sm"
+                                                            t-attf-name="uom_id_#{line.id}"
+                                                        >
+                                                            <option
+                                                                value=""
+                                                            >Select unit...</option>
+                                                            <t
+                                                                t-foreach="uoms"
+                                                                t-as="uom"
+                                                            >
+                                                                <option
+                                                                    t-att-value="uom.id"
+                                                                    t-att-selected="line.uom_id.id == uom.id"
+                                                                    t-esc="uom.name"
+                                                                />
+                                                            </t>
+                                                        </select>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <div>
+                                                            <span
+                                                                t-esc="line.get_uom_name()"
+                                                            />
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <t t-if="line.notes">
+                                                <div class="mt-2">
+                                                    <small class="text-muted">
+                                                        <i
+                                                            class="fa fa-sticky-note me-1"
+                                                        />
+                                                        <span t-esc="line.notes" />
+                                                    </small>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Desktop Table View -->
+                                <div class="table-responsive d-none d-md-block">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th width="5%" />
+                                                <th>Product</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th
+                                                    class="d-none d-lg-table-cell"
+                                                >Notes</th>
+                                                <th
+                                                    width="10%"
+                                                    class="text-center"
+                                                >Purchased</th>
+                                                <th
+                                                    width="5%"
+                                                    t-attf-invisible="#{mode != 'edit' or grocery_list.state != 'draft'}"
+                                                />
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                t-foreach="grocery_list.line_ids.sorted('sequence')"
+                                                t-as="line"
+                                            >
+                                                <td>
+                                                    <i
+                                                        class="fa fa-grip-vertical text-muted"
+                                                        style="cursor: move;"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <strong
+                                                        t-field="line.grocery_product_id.name"
+                                                    />
+                                                    <t
+                                                        t-if="line.grocery_product_id.category"
+                                                    >
+                                                        <br />
+                                                        <small
+                                                            class="text-muted"
+                                                            t-field="line.grocery_product_id.category"
+                                                        />
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t
+                                                        t-if="mode == 'edit' and grocery_list.state == 'draft'"
+                                                    >
+                                                        <input
+                                                            type="number"
+                                                            class="form-control form-control-sm"
+                                                            t-att-value="line.quantity"
+                                                            step="0.01"
+                                                            min="0.01"
+                                                            t-attf-name="quantity_#{line.id}"
+                                                            style="min-width: 80px; max-width: 120px;"
+                                                        />
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-esc="line.quantity" />
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t
+                                                        t-if="mode == 'edit' and grocery_list.state == 'draft'"
+                                                    >
+                                                        <select
+                                                            class="form-select form-select-sm"
+                                                            t-attf-name="uom_id_#{line.id}"
+                                                            style="min-width: 120px; max-width: 180px;"
+                                                        >
+                                                            <option
+                                                                value=""
+                                                            >Select unit...</option>
+                                                            <t
+                                                                t-foreach="uoms"
+                                                                t-as="uom"
+                                                            >
+                                                                <option
+                                                                    t-att-value="uom.id"
+                                                                    t-att-selected="line.uom_id.id == uom.id"
+                                                                    t-esc="uom.name"
+                                                                />
+                                                            </t>
+                                                        </select>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span
+                                                            t-esc="line.get_uom_name()"
+                                                        />
+                                                    </t>
+                                                </td>
+                                                <td class="d-none d-lg-table-cell">
+                                                    <t t-if="line.notes">
+                                                        <small
+                                                            class="text-muted"
+                                                            t-esc="line.notes"
+                                                        />
+                                                    </t>
+                                                </td>
+                                                <td class="text-center">
+                                                    <owl-component
+                                                        name="website_supermarket_list.TogglePurchased"
+                                                        t-att-props="json.dumps({
+                                                                'listId': grocery_list.id,
+                                                                'lineId': line.id,
+                                                                'initialChecked': line.is_purchased,
+                                                                'disabled': grocery_list.state == 'done'
+                                                            })"
+                                                    />
+                                                </td>
+                                                <td
+                                                    t-attf-invisible="#{mode != 'edit' or grocery_list.state != 'draft' or grocery_list.state == 'done'}"
+                                                >
+                                                    <form
+                                                        method="post"
+                                                        t-attf-action="/my/grocery-lists/#{grocery_list.id}/delete-line"
+                                                        style="display: inline;"
+                                                    >
+                                                        <input
+                                                            type="hidden"
+                                                            name="csrf_token"
+                                                            t-att-value="request.csrf_token()"
+                                                        />
+                                                        <input
+                                                            type="hidden"
+                                                            t-attf-name="line_id"
+                                                            t-att-value="line.id"
+                                                        />
+                                                        <input
+                                                            type="hidden"
+                                                            name="mode"
+                                                            t-att-value="mode"
+                                                        />
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-sm btn-link text-danger"
+                                                        >
+                                                            <i class="fa fa-trash" />
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <t
+                                    t-if="mode == 'edit' and grocery_list.state == 'draft'"
+                                >
+                                    <div class="card-footer d-flex justify-content-end">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary w-100 w-md-auto"
+                                        >Save
+                                                Changes</button>
+                                    </div>
+                                </t>
+                            </form>
+                        </t>
+                    </div>
+                </div>
+
+                <!-- Add Product Modal -->
+                <owl-component
+                    name="website_supermarket_list.AddProductModal"
+                    t-att-props="json.dumps({'listId': grocery_list.id, 'uoms': [{'id': uom.id, 'name': uom.name} for uom in uoms]})"
+                />
+            </div>
+        </t>
+    </template>
+</odoo>

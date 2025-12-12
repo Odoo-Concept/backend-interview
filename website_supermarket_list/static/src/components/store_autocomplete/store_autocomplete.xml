@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.StoreAutoComplete">
+        <AutoCompleteWithPages
+            onInput.bind="onInput"
+            onSelect.bind="onSelect"
+            dropdownClass="dropdownClass"
+            dropdownOptions="dropdownOptions"
+            sources="sources"
+            targetDropdown="props.targetDropdown"
+        />
+    </t>
+
+    <t t-name="website_supermarket_list.StoreAutoCompleteItem">
+        <div class="d-flex flex-column">
+            <span class="fw-bold">
+                <t t-out="option.label" />
+            </span>
+            <t t-if="option.address">
+                <small class="text-muted">
+                    <t t-out="option.address" />
+                </small>
+            </t>
+        </div>
+    </t>
+</templates>

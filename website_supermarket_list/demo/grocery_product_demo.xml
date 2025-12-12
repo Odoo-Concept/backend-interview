@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Dairy Products -->
+    <record id="demo_product_milk" model="grocery.product">
+        <field name="name">Milk</field>
+        <field name="category">Dairy</field>
+        <field name="description">Fresh whole milk, 1 gallon</field>
+        <field name="barcode">1234567890123</field>
+        <field name="is_favorite" eval="True" />
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_eggs" model="grocery.product">
+        <field name="name">Eggs</field>
+        <field name="category">Dairy</field>
+        <field name="description">Large eggs, 12 count</field>
+        <field name="barcode">1234567890124</field>
+        <field name="is_favorite" eval="True" />
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_cheese" model="grocery.product">
+        <field name="name">Cheddar Cheese</field>
+        <field name="category">Dairy</field>
+        <field name="description">Sharp cheddar cheese, 8 oz</field>
+        <field name="barcode">1234567890125</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_yogurt" model="grocery.product">
+        <field name="name">Greek Yogurt</field>
+        <field name="category">Dairy</field>
+        <field name="description">Plain Greek yogurt, 32 oz</field>
+        <field name="barcode">1234567890126</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_butter" model="grocery.product">
+        <field name="name">Butter</field>
+        <field name="category">Dairy</field>
+        <field name="description">Unsalted butter, 1 lb</field>
+        <field name="barcode">1234567890127</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Fruits -->
+    <record id="demo_product_bananas" model="grocery.product">
+        <field name="name">Bananas</field>
+        <field name="category">Fruits</field>
+        <field name="description">Fresh bananas, per lb</field>
+        <field name="barcode">1234567890128</field>
+        <field name="is_favorite" eval="True" />
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_apples" model="grocery.product">
+        <field name="name">Apples</field>
+        <field name="category">Fruits</field>
+        <field name="description">Red delicious apples, per lb</field>
+        <field name="barcode">1234567890129</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_oranges" model="grocery.product">
+        <field name="name">Oranges</field>
+        <field name="category">Fruits</field>
+        <field name="description">Navel oranges, per lb</field>
+        <field name="barcode">1234567890130</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_strawberries" model="grocery.product">
+        <field name="name">Strawberries</field>
+        <field name="category">Fruits</field>
+        <field name="description">Fresh strawberries, 1 lb container</field>
+        <field name="barcode">1234567890131</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Vegetables -->
+    <record id="demo_product_tomatoes" model="grocery.product">
+        <field name="name">Tomatoes</field>
+        <field name="category">Vegetables</field>
+        <field name="description">Roma tomatoes, per lb</field>
+        <field name="barcode">1234567890132</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_lettuce" model="grocery.product">
+        <field name="name">Lettuce</field>
+        <field name="category">Vegetables</field>
+        <field name="description">Iceberg lettuce, 1 head</field>
+        <field name="barcode">1234567890133</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_carrots" model="grocery.product">
+        <field name="name">Carrots</field>
+        <field name="category">Vegetables</field>
+        <field name="description">Baby carrots, 1 lb bag</field>
+        <field name="barcode">1234567890134</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_onions" model="grocery.product">
+        <field name="name">Onions</field>
+        <field name="category">Vegetables</field>
+        <field name="description">Yellow onions, per lb</field>
+        <field name="barcode">1234567890135</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Bakery -->
+    <record id="demo_product_bread" model="grocery.product">
+        <field name="name">Bread</field>
+        <field name="category">Bakery</field>
+        <field name="description">White bread, 1 loaf</field>
+        <field name="barcode">1234567890136</field>
+        <field name="is_favorite" eval="True" />
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_bagels" model="grocery.product">
+        <field name="name">Bagels</field>
+        <field name="category">Bakery</field>
+        <field name="description">Plain bagels, 6 pack</field>
+        <field name="barcode">1234567890137</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_croissants" model="grocery.product">
+        <field name="name">Croissants</field>
+        <field name="category">Bakery</field>
+        <field name="description">Butter croissants, 4 pack</field>
+        <field name="barcode">1234567890138</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Meat &amp; Poultry -->
+    <record id="demo_product_chicken_breast" model="grocery.product">
+        <field name="name">Chicken Breast</field>
+        <field name="category">Meat &amp; Poultry</field>
+        <field name="description">Boneless skinless chicken breast, per lb</field>
+        <field name="barcode">1234567890139</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_ground_beef" model="grocery.product">
+        <field name="name">Ground Beef</field>
+        <field name="category">Meat &amp; Poultry</field>
+        <field name="description">80/20 ground beef, 1 lb</field>
+        <field name="barcode">1234567890140</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_salmon" model="grocery.product">
+        <field name="name">Salmon Fillet</field>
+        <field name="category">Meat &amp; Poultry</field>
+        <field name="description">Fresh Atlantic salmon, per lb</field>
+        <field name="barcode">1234567890141</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Beverages -->
+    <record id="demo_product_water" model="grocery.product">
+        <field name="name">Bottled Water</field>
+        <field name="category">Beverages</field>
+        <field name="description">Spring water, 24 pack</field>
+        <field name="barcode">1234567890142</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_orange_juice" model="grocery.product">
+        <field name="name">Orange Juice</field>
+        <field name="category">Beverages</field>
+        <field name="description">100% pure orange juice, 64 oz</field>
+        <field name="barcode">1234567890143</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_coffee" model="grocery.product">
+        <field name="name">Coffee</field>
+        <field name="category">Beverages</field>
+        <field name="description">Ground coffee, 12 oz</field>
+        <field name="barcode">1234567890144</field>
+        <field name="is_favorite" eval="True" />
+        <field name="active" eval="True" />
+    </record>
+
+    <!-- Pantry Staples -->
+    <record id="demo_product_rice" model="grocery.product">
+        <field name="name">Rice</field>
+        <field name="category">Pantry</field>
+        <field name="description">Long grain white rice, 5 lb bag</field>
+        <field name="barcode">1234567890145</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_pasta" model="grocery.product">
+        <field name="name">Pasta</field>
+        <field name="category">Pantry</field>
+        <field name="description">Spaghetti pasta, 1 lb</field>
+        <field name="barcode">1234567890146</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_flour" model="grocery.product">
+        <field name="name">All-Purpose Flour</field>
+        <field name="category">Pantry</field>
+        <field name="description">All-purpose flour, 5 lb bag</field>
+        <field name="barcode">1234567890147</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_sugar" model="grocery.product">
+        <field name="name">Sugar</field>
+        <field name="category">Pantry</field>
+        <field name="description">Granulated white sugar, 4 lb bag</field>
+        <field name="barcode">1234567890148</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_product_olive_oil" model="grocery.product">
+        <field name="name">Olive Oil</field>
+        <field name="category">Pantry</field>
+        <field name="description">Extra virgin olive oil, 16.9 oz</field>
+        <field name="barcode">1234567890149</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

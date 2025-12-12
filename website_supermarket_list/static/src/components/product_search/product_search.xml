@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.ProductSearch">
+        <div class="mb-3">
+            <label for="product_search" class="form-label">Product</label>
+            <input
+                type="text"
+                t-ref="searchInput"
+                class="form-control"
+                id="product_search"
+                placeholder="Search or create product..."
+                autocomplete="off"
+                t-on-input="onInput"
+                t-on-focus="onFocus"
+            />
+            <div
+                t-ref="results"
+                class="dropdown-menu"
+                t-att-class="{'show': state.showDropdown}"
+                style="max-height: 300px; overflow-y: auto;"
+            >
+                <t t-if="state.isLoading">
+                    <li class="dropdown-item-text">
+                        <i class="fa fa-spinner fa-spin" /> Searching...
+                    </li>
+                </t>
+                <t
+                    t-elif="state.products.length === 0 and state.searchTerm.length >= 2"
+                >
+                    <li class="dropdown-item-text">
+                        <a
+                            href="#"
+                            class="create-product-link"
+                            t-on-click.prevent="onCreateProductClick"
+                            t-att-data-term="state.searchTerm"
+                        >
+                            <i class="fa fa-plus me-1" /> Create new product: <t
+                            t-esc="state.searchTerm"
+                        />
+                        </a>
+                    </li>
+                </t>
+                <t t-else="">
+                    <t t-foreach="state.products" t-as="product" t-key="product.id">
+                        <li>
+                            <a
+                                class="dropdown-item product-result"
+                                href="#"
+                                t-on-click.prevent="onProductClick"
+                                t-att-data-product-id="product.id"
+                                t-att-data-product-name="product.name"
+                            >
+                                <strong t-esc="product.name" />
+                                <t t-if="product.category">
+                                    <br />
+                                    <small
+                                        class="text-muted"
+                                        t-esc="product.category"
+                                    />
+                                </t>
+                                <t t-if="product.is_favorite">
+                                    <i class="fa fa-star text-warning float-end" />
+                                </t>
+                            </a>
+                        </li>
+                    </t>
+                    <li class="dropdown-divider" />
+                    <li>
+                        <a
+                            href="#"
+                            class="dropdown-item create-product-link"
+                            t-on-click.prevent="onCreateProductClick"
+                            t-att-data-term="state.searchTerm"
+                        >
+                            <i class="fa fa-plus me-1" /> Create new: <t
+                            t-esc="state.searchTerm"
+                        />
+                        </a>
+                    </li>
+                </t>
+            </div>
+            <input
+                type="hidden"
+                t-ref="productIdInput"
+                id="product_id"
+                name="product_id"
+            />
+        </div>
+    </t>
+</templates>

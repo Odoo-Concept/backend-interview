@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Grocery Store List View -->
+    <record id="grocery_store_view_tree" model="ir.ui.view">
+        <field name="name">grocery.store.list</field>
+        <field name="model">grocery.store</field>
+        <field name="arch" type="xml">
+            <list string="Grocery Stores">
+                <field name="name" />
+                <field name="address" />
+                <field name="phone" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Grocery Store Form View -->
+    <record id="grocery_store_view_form" model="ir.ui.view">
+        <field name="name">grocery.store.form</field>
+        <field name="model">grocery.store</field>
+        <field name="arch" type="xml">
+            <form string="Grocery Store">
+                <header>
+                    <button
+                        string="Archive"
+                        name="toggle_active"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-archive"
+                        invisible="active == False"
+                    />
+                    <button
+                        string="Unarchive"
+                        name="toggle_active"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-archive"
+                        invisible="active == True"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="action"
+                            name="%(action_grocery_list)d"
+                            icon="fa-shopping-cart"
+                            context="{'default_store_id': id, 'search_default_store_id': id}"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Lists</span>
+                                <span class="o_stat_value">
+                                    <field name="total_lists" />
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g., Walmart, Carrefour" />
+                            <field
+                                name="description"
+                                placeholder="Store description..."
+                            />
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <group string="Contact Information">
+                        <group>
+                            <field name="address" placeholder="Store address..." />
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone" />
+                            <field name="email" widget="email" />
+                            <field name="website" widget="url" />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- Grocery Store Search View -->
+    <record id="grocery_store_view_search" model="ir.ui.view">
+        <field name="name">grocery.store.search</field>
+        <field name="model">grocery.store</field>
+        <field name="arch" type="xml">
+            <search string="Grocery Stores">
+                <field
+                    name="name"
+                    string="Store Name"
+                    filter_domain="['|', ('name', 'ilike', self), ('address', 'ilike', self)]"
+                />
+                <field name="address" />
+                <field name="phone" />
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Active"
+                        name="group_active"
+                        context="{'group_by': 'active'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Grocery Store Action -->
+    <record id="action_grocery_store" model="ir.actions.act_window">
+        <field name="name">Grocery Stores</field>
+        <field name="res_model">grocery.store</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="grocery_store_view_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Create your first grocery store
+                </p>
+            <p>
+                    Grocery stores are the places where you do your shopping.
+                    Create stores to organize your shopping lists.
+                </p>
+        </field>
+    </record>
+</odoo>

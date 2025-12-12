@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_grocery_root"
+        name="Grocery Lists"
+        sequence="100"
+        web_icon="website_supermarket_list,static/description/icon.svg"
+    />
+    <menuitem
+        id="menu_grocery_lists"
+        name="Shopping Lists"
+        parent="menu_grocery_root"
+        action="action_grocery_list"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_grocery_products"
+        name="Products"
+        parent="menu_grocery_root"
+        action="action_grocery_product"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_grocery_stores"
+        name="Stores"
+        parent="menu_grocery_root"
+        action="action_grocery_store"
+        sequence="30"
+    />
+</odoo>

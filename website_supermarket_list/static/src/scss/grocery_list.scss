@@ -1,0 +1,182 @@
+// Grocery List Styles - Mobile First
+
+.grocery-list-detail {
+    .progress {
+        height: 25px;
+        font-size: 0.875rem;
+    }
+
+    // Mobile Card View
+    .list-group-item {
+        padding: 1rem;
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control-sm,
+        .form-select-sm {
+            font-size: 0.875rem;
+        }
+    }
+
+    // Desktop Table View
+    .table {
+        th {
+            border-top: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .toggle-purchased {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+
+    // Buttons - Mobile First
+    .btn {
+        min-height: 44px; // Touch target size
+        font-size: 1rem;
+
+        @media (min-width: 768px) {
+            min-height: auto;
+        }
+    }
+
+    // Form controls - Mobile First
+    .form-control,
+    .form-select {
+        min-height: 44px; // Touch target size
+        font-size: 1rem;
+
+        @media (min-width: 768px) {
+            min-height: auto;
+            font-size: 0.875rem;
+        }
+    }
+}
+
+// Store/Product search dropdown
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+
+    .dropdown-item {
+        cursor: pointer;
+        min-height: 44px; // Touch target size
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+
+        &.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+    }
+}
+
+// Mobile optimizations
+@media (max-width: 767.98px) {
+    .grocery-list-detail {
+        .card-header {
+            padding: 1rem;
+        }
+
+        .list-group-item {
+            padding: 1rem;
+
+            .row {
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
+
+                > [class*="col-"] {
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                }
+            }
+        }
+
+        .toggle-purchased {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+        }
+
+        // Ensure buttons are full width on mobile
+        .btn {
+            width: 100%;
+        }
+    }
+
+    // Mobile grocery list cards - clickable
+    .grocery-list-card-mobile {
+        text-decoration: none;
+        color: inherit;
+        transition:
+            background-color 0.2s ease,
+            transform 0.1s ease;
+        border-left: 3px solid transparent;
+
+        &:hover,
+        &:focus {
+            background-color: #f8f9fa;
+            border-left-color: #0d6efd;
+            color: inherit;
+            transform: translateX(2px);
+        }
+
+        &:active {
+            background-color: #e9ecef;
+            transform: translateX(0);
+        }
+
+        h5 {
+            transition: color 0.2s ease;
+        }
+
+        &:hover h5,
+        &:focus h5 {
+            color: #0d6efd !important;
+        }
+
+        .fa-chevron-right {
+            transition:
+                transform 0.2s ease,
+                color 0.2s ease;
+        }
+
+        &:hover .fa-chevron-right,
+        &:focus .fa-chevron-right {
+            transform: translateX(3px);
+            color: #0d6efd;
+        }
+    }
+}
+
+// Loading states
+.fa-spinner {
+    animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

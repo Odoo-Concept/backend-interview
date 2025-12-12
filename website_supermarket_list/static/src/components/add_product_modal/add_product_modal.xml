@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.AddProductModal">
+        <div
+            class="modal fade"
+            t-ref="modal"
+            id="addProductModal"
+            tabindex="-1"
+            role="dialog"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Product</h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        />
+                    </div>
+                    <form
+                        t-ref="form"
+                        id="add_product_form"
+                        method="post"
+                        t-attf-action="/my/grocery-lists/#{props.listId}/add-product"
+                        t-on-submit="onSubmit"
+                    >
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            t-att-value="csrfToken"
+                        />
+                        <div class="modal-body">
+                            <ProductSearch t-props="props" />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label
+                                        for="quantity"
+                                        class="form-label"
+                                    >Quantity</label>
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id="quantity"
+                                        name="quantity"
+                                        t-att-value="state.formData.quantity"
+                                        step="0.01"
+                                        min="0.01"
+                                    />
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="uom_id" class="form-label">Unit</label>
+                                    <select
+                                        class="form-select"
+                                        id="uom_id"
+                                        name="uom_id"
+                                        required="required"
+                                        t-att-value="state.formData.uomId"
+                                    >
+                                        <option value="">Select unit...</option>
+                                        <t
+                                            t-foreach="props.uoms"
+                                            t-as="uom"
+                                            t-key="uom.id"
+                                        >
+                                            <option
+                                                t-att-value="uom.id"
+                                                t-esc="uom.name"
+                                            />
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label
+                                    for="notes"
+                                    class="form-label"
+                                >Notes (optional)</label>
+                                <textarea
+                                    class="form-control"
+                                    id="notes"
+                                    name="notes"
+                                    rows="2"
+                                    placeholder="Additional notes..."
+                                    t-att-value="state.formData.notes"
+                                />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >Cancel</button>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >Add Product</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

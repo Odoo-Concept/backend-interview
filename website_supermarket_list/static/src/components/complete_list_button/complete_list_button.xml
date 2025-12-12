@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.CompleteListButton">
+        <form
+            method="post"
+            t-attf-action="/my/grocery-lists/#{props.listId}/action"
+            class="w-100 w-md-auto"
+        >
+            <input type="hidden" name="csrf_token" t-att-value="csrfToken" />
+            <input type="hidden" name="action" value="set_done" />
+            <input type="hidden" name="mode" t-att-value="props.mode" />
+            <button
+                type="submit"
+                class="btn btn-success w-100 w-md-auto"
+                t-att-disabled="isDisabled"
+            >
+                <i class="fa fa-check me-1" /> Complete List
+            </button>
+        </form>
+    </t>
+</templates>

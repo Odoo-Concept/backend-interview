@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.TogglePurchased">
+        <input
+            type="checkbox"
+            class="form-check-input toggle-purchased"
+            t-att-checked="state.isChecked"
+            t-att-disabled="props.disabled or state.isUpdating"
+            title="Mark as purchased"
+            t-on-change="onChange"
+        />
+    </t>
+</templates>

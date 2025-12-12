@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="demo_store_walmart" model="grocery.store">
+        <field name="name">Walmart</field>
+        <field
+            name="description"
+        >Large retail chain offering groceries, household items, and more</field>
+        <field name="address">123 Main Street, City Center</field>
+        <field name="website">https://www.walmart.com</field>
+        <field name="phone">+1 555-0100</field>
+        <field name="email">info@walmart.com</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_store_carrefour" model="grocery.store">
+        <field name="name">Carrefour</field>
+        <field name="description">International hypermarket chain</field>
+        <field name="address">456 Commerce Avenue, Downtown</field>
+        <field name="website">https://www.carrefour.com</field>
+        <field name="phone">+1 555-0200</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_store_local_market" model="grocery.store">
+        <field name="name">Local Market</field>
+        <field name="description">Neighborhood grocery store with fresh produce</field>
+        <field name="address">789 Oak Street, Residential Area</field>
+        <field name="phone">+1 555-0300</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_store_whole_foods" model="grocery.store">
+        <field name="name">Whole Foods Market</field>
+        <field name="description">Organic and natural foods supermarket</field>
+        <field name="address">321 Green Boulevard, Eco District</field>
+        <field name="website">https://www.wholefoodsmarket.com</field>
+        <field name="phone">+1 555-0400</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="demo_store_costco" model="grocery.store">
+        <field name="name">Costco Wholesale</field>
+        <field name="description">Membership warehouse club</field>
+        <field name="address">654 Bulk Road, Industrial Zone</field>
+        <field name="website">https://www.costco.com</field>
+        <field name="phone">+1 555-0500</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

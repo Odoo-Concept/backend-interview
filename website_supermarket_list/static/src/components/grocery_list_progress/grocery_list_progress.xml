@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.GroceryListProgress">
+        <div class="mb-4">
+            <div class="d-flex justify-content-between mb-2">
+                <span>Progress</span>
+                <strong class="progress-text">
+                    <t t-esc="Math.round(state.progress)" />%
+                    (<t t-esc="state.purchasedItems" />/<t t-esc="state.totalItems" />)
+                </strong>
+            </div>
+            <div class="progress" style="height: 25px;">
+                <div
+                    class="progress-bar bg-info"
+                    t-att-style="'width: ' + state.progress + '%'"
+                    role="progressbar"
+                    t-att-aria-valuenow="state.progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >
+                    <t t-esc="Math.round(state.progress)" />%
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

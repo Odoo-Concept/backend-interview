@@ -16,10 +16,18 @@ const config = [{
             openerp: "readonly",
             owl: "readonly",
             luxon: "readonly",
+            // Browser globals
+            alert: "readonly",
+            console: "readonly",
+            CustomEvent: "readonly",
+            document: "readonly",
+            HTMLElement: "readonly",
+            URLSearchParams: "readonly",
+            window: "readonly",
         },
 
         ecmaVersion: 2024,
-        sourceType: "script",
+        sourceType: "module",
     },
 
     rules: {
@@ -152,7 +160,9 @@ const config = [{
         strict: ["error", "function"],
         "use-isnan": "error",
 
-        "jsdoc/check-tag-names": "warn",
+        "jsdoc/check-tag-names": ["warn", {
+            "definedTags": ["odoo-module"]
+        }],
         "jsdoc/check-types": "warn",
         "jsdoc/require-param-description": "off",
         "jsdoc/require-return": "off",

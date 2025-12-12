@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grocery_store_public,grocery.store.public,model_grocery_store,base.group_public,1,0,1,0
+access_grocery_store_portal,grocery.store.portal,model_grocery_store,base.group_portal,1,0,1,0
+access_grocery_store_user,grocery.store.user,model_grocery_store,base.group_user,1,1,1,0
+access_grocery_store_manager,grocery.store.manager,model_grocery_store,base.group_system,1,1,1,1
+access_grocery_product_public,grocery.product.public,model_grocery_product,base.group_public,1,0,1,0
+access_grocery_product_portal,grocery.product.portal,model_grocery_product,base.group_portal,1,0,1,0
+access_grocery_product_user,grocery.product.user,model_grocery_product,base.group_user,1,1,1,0
+access_grocery_product_manager,grocery.product.manager,model_grocery_product,base.group_system,1,1,1,1
+access_grocery_list_public,grocery.list.public,model_grocery_list,base.group_public,1,1,1,1
+access_grocery_list_portal,grocery.list.portal,model_grocery_list,base.group_portal,1,1,1,1
+access_grocery_list_user,grocery.list.user,model_grocery_list,base.group_user,1,1,1,0
+access_grocery_list_manager,grocery.list.manager,model_grocery_list,base.group_system,1,1,1,1
+access_grocery_list_line_public,grocery.list.line.public,model_grocery_list_line,base.group_public,1,1,1,1
+access_grocery_list_line_portal,grocery.list.line.portal,model_grocery_list_line,base.group_portal,1,1,1,1
+access_grocery_list_line_user,grocery.list.line.user,model_grocery_list_line,base.group_user,1,1,1,0
+access_grocery_list_line_manager,grocery.list.line.manager,model_grocery_list_line,base.group_system,1,1,1,1

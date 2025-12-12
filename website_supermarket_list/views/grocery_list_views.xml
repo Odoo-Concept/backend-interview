@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Grocery List List View -->
+    <record id="grocery_list_view_tree" model="ir.ui.view">
+        <field name="name">grocery.list.list</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <list string="Grocery Lists">
+                <field name="name" />
+                <field name="responsible_id" />
+                <field name="store_id" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'done'"
+                    decoration-info="state == 'in_progress'"
+                    decoration-muted="state == 'draft'"
+                />
+                <field name="total_items" />
+                <field name="purchased_items" />
+                <field name="progress" widget="progressbar" />
+                <field name="date_created" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Grocery List Kanban View -->
+    <record id="grocery_list_view_kanban" model="ir.ui.view">
+        <field name="name">grocery.list.kanban</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_mobile">
+                <field name="id" />
+                <field name="name" />
+                <field name="state" />
+                <field name="store_id" />
+                <field name="responsible_id" />
+                <field name="total_items" />
+                <field name="purchased_items" />
+                <field name="progress" />
+                <progressbar
+                    field="state"
+                    colors='{"done": "success", "in_progress": "info", "draft": "muted"}'
+                />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name" />
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle">
+                                        <field name="store_id" />
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field
+                                                name="responsible_id"
+                                                widget="many2one_avatar_user"
+                                            />
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                                <field name="purchased_items" />/<field
+                                            name="total_items"
+                                        />
+                                            </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <field name="progress" widget="progressbar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Grocery List Form View -->
+    <record id="grocery_list_view_form" model="ir.ui.view">
+        <field name="name">grocery.list.form</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <form string="Grocery List" create="state != 'done'" edit="state != 'done'">
+                <header>
+                    <button
+                        string="Start Shopping"
+                        name="action_set_in_progress"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state != 'draft' or total_items == 0"
+                    />
+                    <button
+                        string="Complete"
+                        name="action_set_done"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'in_progress' or pending_items > 0"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_progress,done"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="action"
+                            name="%(action_grocery_list_line)d"
+                            icon="fa-shopping-cart"
+                            context="{'default_list_id': id, 'search_default_list_id': id}"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Items</span>
+                                <span class="o_stat_value">
+                                        <field name="purchased_items" />/<field
+                                    name="total_items"
+                                />
+                                    </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="name"
+                                placeholder="e.g., Weekly Shopping, Christmas List"
+                                readonly="state == 'done'"
+                            />
+                            <field
+                                name="responsible_id"
+                                options="{'no_create': True}"
+                                readonly="state == 'done'"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="store_id"
+                                options="{'no_create': True}"
+                                readonly="state == 'done'"
+                            />
+                            <field name="date_created" readonly="1" />
+                            <field
+                                name="date_started"
+                                readonly="1"
+                                invisible="state == 'draft'"
+                            />
+                            <field
+                                name="date_completed"
+                                readonly="1"
+                                invisible="state != 'done'"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="total_items" readonly="1" />
+                            <field name="purchased_items" readonly="1" />
+                            <field name="pending_items" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="progress" widget="progressbar" readonly="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Products" name="products">
+                            <field
+                                name="line_ids"
+                                nolabel="1"
+                                readonly="state == 'in_progress' or state == 'done'"
+                            >
+                                <list
+                                    editable="bottom"
+                                    default_order="sequence"
+                                    create="state != 'in_progress' and state != 'done'"
+                                    delete="state != 'in_progress' and state != 'done'"
+                                >
+                                    <field name="sequence" widget="handle" />
+                                    <field
+                                        name="grocery_product_id"
+                                        options="{'no_create': True, 'no_create_edit': True}"
+                                    />
+                                    <field
+                                        name="quantity"
+                                        readonly="list_state == 'in_progress' or list_state == 'done'"
+                                    />
+                                    <field
+                                        name="uom_id"
+                                        readonly="list_state == 'in_progress' or list_state == 'done'"
+                                    />
+                                    <field
+                                        name="is_purchased"
+                                        widget="boolean_toggle"
+                                        readonly="list_state == 'done'"
+                                    />
+                                    <field
+                                        name="notes"
+                                        placeholder="Notes..."
+                                        readonly="list_state == 'in_progress' or list_state == 'done'"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- Grocery List Search View -->
+    <record id="grocery_list_view_search" model="ir.ui.view">
+        <field name="name">grocery.list.search</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <search string="Grocery Lists">
+                <field
+                    name="name"
+                    string="List Name"
+                    filter_domain="['|', ('name', 'ilike', self), ('store_id', 'ilike', self)]"
+                />
+                <field name="responsible_id" />
+                <field name="store_id" />
+                <separator />
+                <filter
+                    string="Draft"
+                    name="draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    string="In Progress"
+                    name="in_progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+                <filter
+                    string="Completed"
+                    name="done"
+                    domain="[('state', '=', 'done')]"
+                />
+                <filter
+                    string="My Lists"
+                    name="my_lists"
+                    domain="[('responsible_id', '=', uid)]"
+                />
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="State"
+                        name="group_state"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        string="Responsible"
+                        name="group_responsible"
+                        context="{'group_by': 'responsible_id'}"
+                    />
+                    <filter
+                        string="Store"
+                        name="group_store"
+                        context="{'group_by': 'store_id'}"
+                    />
+                    <filter
+                        string="Creation Date"
+                        name="group_date_created"
+                        context="{'group_by': 'date_created:day'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Grocery List Action -->
+    <record id="action_grocery_list" model="ir.actions.act_window">
+        <field name="name">Grocery Lists</field>
+        <field name="res_model">grocery.list</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="grocery_list_view_search" />
+        <field name="context">{'search_default_my_lists': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Create your first grocery list
+                </p>
+            <p>
+                    Create shopping lists to organize your grocery shopping.
+                    Add products, track your progress, and mark items as purchased.
+                </p>
+        </field>
+    </record>
+</odoo>

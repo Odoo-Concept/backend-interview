@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.StoreAutocompleteComponent">
+        <input
+            type="text"
+            t-ref="input"
+            class="form-control"
+            id="store_name"
+            name="store_name"
+            placeholder="Type store name (e.g., Walmart, Carrefour)"
+            required="required"
+            autocomplete="off"
+        />
+    </t>
+</templates>

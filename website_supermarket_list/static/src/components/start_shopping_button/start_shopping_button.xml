@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="website_supermarket_list.StartShoppingButton">
+        <div class="w-100 w-md-auto">
+            <t t-if="state.errorMessage">
+                <div
+                    class="alert alert-danger alert-dismissible fade show mb-2"
+                    role="alert"
+                >
+                    <t t-esc="state.errorMessage" />
+                    <button
+                        type="button"
+                        class="btn-close"
+                        t-on-click="dismissError"
+                        aria-label="Close"
+                    />
+                </div>
+            </t>
+            <form
+                method="post"
+                t-attf-action="/my/grocery-lists/#{props.listId}/action"
+                t-on-submit="onSubmit"
+            >
+                <input type="hidden" name="csrf_token" t-att-value="csrfToken" />
+                <input type="hidden" name="action" value="set_in_progress" />
+                <input type="hidden" name="mode" t-att-value="props.mode" />
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100 w-md-auto"
+                    t-att-disabled="isDisabled"
+                    t-att-title="isDisabled ? 'Add at least one product to start shopping' : ''"
+                >
+                    <i class="fa fa-play me-1" /> Start Shopping
+                </button>
+            </form>
+        </div>
+    </t>
+</templates>

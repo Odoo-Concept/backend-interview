@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Grocery Product List View -->
+    <record id="grocery_product_view_tree" model="ir.ui.view">
+        <field name="name">grocery.product.list</field>
+        <field name="model">grocery.product</field>
+        <field name="arch" type="xml">
+            <list string="Grocery Products">
+                <field name="name" />
+                <field name="category" />
+                <field name="usage_count" sum="Total" />
+                <field name="has_real_product" widget="boolean_toggle" />
+                <field name="is_favorite" widget="boolean_toggle" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Grocery Product Form View -->
+    <record id="grocery_product_view_form" model="ir.ui.view">
+        <field name="name">grocery.product.form</field>
+        <field name="model">grocery.product</field>
+        <field name="arch" type="xml">
+            <form string="Grocery Product">
+                <header>
+                    <button
+                        string="Archive"
+                        name="toggle_active"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-archive"
+                        invisible="active == False"
+                    />
+                    <button
+                        string="Unarchive"
+                        name="toggle_active"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-archive"
+                        invisible="active == True"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="action"
+                            name="%(action_grocery_list_line)d"
+                            icon="fa-list"
+                            context="{'default_grocery_product_id': id, 'search_default_grocery_product_id': id}"
+                        >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Used in Lists</span>
+                                <span class="o_stat_value">
+                                    <field name="usage_count" />
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g., Eggs, Milk, Bread" />
+                            <field
+                                name="category"
+                                placeholder="e.g., Dairy, Fruits, Vegetables"
+                            />
+                            <field
+                                name="description"
+                                placeholder="Product description..."
+                            />
+                        </group>
+                        <group>
+                            <field name="barcode" placeholder="Barcode (optional)" />
+                            <field name="is_favorite" widget="boolean_toggle" />
+                            <field name="active" widget="boolean_toggle" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            string="Real Product Link"
+                            name="real_product"
+                            groups="base.group_system"
+                        >
+                            <group>
+                                <group>
+                                    <field
+                                        name="product_id"
+                                        options="{'no_create': True, 'no_create_edit': True}"
+                                    />
+                                    <field name="has_real_product" readonly="1" />
+                                </group>
+                                <group>
+                                    <field name="product_uom" readonly="1" />
+                                </group>
+                            </group>
+                            <div
+                                class="alert alert-info"
+                                role="alert"
+                                invisible="has_real_product == True"
+                            >
+                                <p
+                                >This product is not linked to any Odoo product. Administrators can link it to enable integration with inventory and sales.</p>
+                            </div>
+                        </page>
+                        <page string="Statistics" name="statistics">
+                            <group>
+                                <group>
+                                    <field name="usage_count" readonly="1" />
+                                    <field name="last_used_date" readonly="1" />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- Grocery Product Search View -->
+    <record id="grocery_product_view_search" model="ir.ui.view">
+        <field name="name">grocery.product.search</field>
+        <field name="model">grocery.product</field>
+        <field name="arch" type="xml">
+            <search string="Grocery Products">
+                <field
+                    name="name"
+                    string="Product Name"
+                    filter_domain="['|', ('name', 'ilike', self), ('barcode', 'ilike', self)]"
+                />
+                <field name="category" />
+                <field name="barcode" />
+                <separator />
+                <filter
+                    string="Favorites"
+                    name="favorites"
+                    domain="[('is_favorite', '=', True)]"
+                />
+                <filter
+                    string="With Real Product"
+                    name="with_real_product"
+                    domain="[('has_real_product', '=', True)]"
+                />
+                <filter
+                    string="Without Real Product"
+                    name="without_real_product"
+                    domain="[('has_real_product', '=', False)]"
+                />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Category"
+                        name="group_category"
+                        context="{'group_by': 'category'}"
+                    />
+                    <filter
+                        string="Has Real Product"
+                        name="group_has_real_product"
+                        context="{'group_by': 'has_real_product'}"
+                    />
+                    <filter
+                        string="Favorite"
+                        name="group_favorite"
+                        context="{'group_by': 'is_favorite'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Grocery Product Action -->
+    <record id="action_grocery_product" model="ir.actions.act_window">
+        <field name="name">Grocery Products</field>
+        <field name="res_model">grocery.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="grocery_product_view_search" />
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                    Create your first grocery product
+                </p>
+            <p>
+                    Products are the items you add to your shopping lists.
+                    Create products to reuse them across multiple lists.
+                </p>
+        </field>
+    </record>
+</odoo>
