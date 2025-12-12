@@ -1,3 +1,5 @@
+from psycopg2.errors import NotNullViolation
+
 from odoo.tests import tagged
 from odoo.tools import mute_logger
 
@@ -21,8 +23,7 @@ class TestGroceryProduct(GroceryListTestCommon):
     @mute_logger("odoo.sql_db")
     def test_create_product_required_name(self):
         """Test that name is required"""
-        # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises(Exception):
+        with self.assertRaises(NotNullViolation):
             self.env["grocery.product"].create(
                 {
                     "active": True,

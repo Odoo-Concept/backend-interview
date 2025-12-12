@@ -47,8 +47,6 @@ class TestGroceryListSecurity(GroceryListTestCommon):
                 "groups_id": [(6, 0, [self.env.ref("base.group_portal").id])],
             }
         )
-
-        # AccessError is raised first due to record rules, before constraint validation
         with self.assertRaises(AccessError):
             line.with_user(other_user).write({"is_purchased": True})
 

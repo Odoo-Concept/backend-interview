@@ -1,3 +1,5 @@
+from psycopg2.errors import NotNullViolation
+
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
 from odoo.tools import mute_logger
@@ -25,8 +27,7 @@ class TestGroceryList(GroceryListTestCommon):
     @mute_logger("odoo.sql_db")
     def test_create_list_required_name(self):
         """Test that name is required"""
-        # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises(Exception):
+        with self.assertRaises(NotNullViolation):
             self.env["grocery.list"].create(
                 {
                     "store_id": self.store.id,
@@ -37,8 +38,7 @@ class TestGroceryList(GroceryListTestCommon):
     @mute_logger("odoo.sql_db")
     def test_create_list_required_store(self):
         """Test that store is required"""
-        # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises(Exception):
+        with self.assertRaises(NotNullViolation):
             self.env["grocery.list"].create(
                 {
                     "name": "Test List",
