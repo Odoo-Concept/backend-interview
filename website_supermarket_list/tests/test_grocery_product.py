@@ -22,7 +22,7 @@ class TestGroceryProduct(GroceryListTestCommon):
     def test_create_product_required_name(self):
         """Test that name is required"""
         # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises((Exception, ValueError)):
+        with self.assertRaises(Exception):
             self.env["grocery.product"].create(
                 {
                     "active": True,

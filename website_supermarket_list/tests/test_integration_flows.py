@@ -1,7 +1,7 @@
 from odoo.tests import tagged
 
 from .test_common import GroceryListTestCommon
-
+from odoo.exceptions import UserError
 
 @tagged("post_install", "-at_install")
 class TestGroceryListIntegrationFlows(GroceryListTestCommon):
@@ -164,9 +164,9 @@ class TestGroceryListIntegrationFlows(GroceryListTestCommon):
         self.assertEqual(list_record.state, "in_progress")
         self.assertTrue(list_record.date_started)
 
-        from odoo.exceptions import ValidationError
+        
 
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             list_record.action_set_done()
 
         line1.write({"is_purchased": True})

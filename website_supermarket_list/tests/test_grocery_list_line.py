@@ -1,4 +1,4 @@
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, AccessError
 from odoo.tests import tagged
 from odoo.tools import mute_logger
 
@@ -24,7 +24,7 @@ class TestGroceryListLine(GroceryListTestCommon):
     def test_create_line_required_list(self):
         """Test that list_id is required"""
         # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises((Exception, ValueError)):
+        with self.assertRaises(Exception):
             self.env["grocery.list.line"].create(
                 {
                     "grocery_product_id": self.product1.id,
@@ -36,7 +36,7 @@ class TestGroceryListLine(GroceryListTestCommon):
     def test_create_line_required_product(self):
         """Test that grocery_product_id is required"""
         # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises((Exception, ValueError)):
+        with self.assertRaises(Exception):
             self.env["grocery.list.line"].create(
                 {
                     "list_id": self.grocery_list.id,
@@ -227,6 +227,7 @@ class TestGroceryListLine(GroceryListTestCommon):
 
     def test_constraint_purchase_permission_not_responsible(self):
         """Test that non-responsible user cannot mark items as purchased"""
+
         other_user = self.env["res.users"].create(
             {
                 "name": "Other User",
@@ -241,7 +242,8 @@ class TestGroceryListLine(GroceryListTestCommon):
                 "quantity": 1.0,
             }
         )
-        with self.assertRaises(ValidationError):
+        # AccessError is raised first due to record rules, before constraint validation
+        with self.assertRaises(AccessError):
             line.with_user(other_user).write({"is_purchased": True})
 
     def test_constraint_purchase_permission_sudo(self):

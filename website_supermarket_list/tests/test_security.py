@@ -48,9 +48,8 @@ class TestGroceryListSecurity(GroceryListTestCommon):
             }
         )
 
-        from odoo.exceptions import ValidationError
-
-        with self.assertRaises(ValidationError):
+        # AccessError is raised first due to record rules, before constraint validation
+        with self.assertRaises(AccessError):
             line.with_user(other_user).write({"is_purchased": True})
 
         line.with_user(self.user_portal).write({"is_purchased": True})

@@ -26,7 +26,7 @@ class TestGroceryList(GroceryListTestCommon):
     def test_create_list_required_name(self):
         """Test that name is required"""
         # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises((Exception, ValueError)):
+        with self.assertRaises(Exception):
             self.env["grocery.list"].create(
                 {
                     "store_id": self.store.id,
@@ -38,7 +38,7 @@ class TestGroceryList(GroceryListTestCommon):
     def test_create_list_required_store(self):
         """Test that store is required"""
         # Required fields can raise different exceptions (ValueError, IntegrityError)
-        with self.assertRaises((Exception, ValueError)):
+        with self.assertRaises(Exception):
             self.env["grocery.list"].create(
                 {
                     "name": "Test List",
