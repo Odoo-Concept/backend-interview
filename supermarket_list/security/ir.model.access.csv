@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_supermarket_list_user,supermarket.list.user,model_supermarket_list,base.group_user,1,1,1,1
+access_supermarket_list_line_user,supermarket.list.line.user,model_supermarket_list_line,base.group_user,1,1,1,1
+access_supermarket_list_portal,supermarket.list.portal,model_supermarket_list,base.group_portal,1,1,1,0
+access_supermarket_list_line_portal,supermarket.list.line.portal,model_supermarket_list_line,base.group_portal,1,1,1,0

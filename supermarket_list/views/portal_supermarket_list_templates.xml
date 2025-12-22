@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_breadcrumbs_supermarket_list" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'supermarket_list'" class="breadcrumb-item active">
+                Supermarket Lists
+            </li>
+            <li t-if="page_name == 'supermarket_list_detail'" class="breadcrumb-item">
+                <a href="/my/supermarket-lists">Supermarket Lists</a>
+            </li>
+            <li t-if="page_name == 'supermarket_list_detail'" class="breadcrumb-item active">
+                <t t-esc="list_record.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_supermarket_list" name="Supermarket Lists" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <xpath expr="//div[@id='portal_client_category']" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/supermarket_list/static/description/icon.png'"/>
+                <t t-set="title">Supermarket Lists</t>
+                <t t-set="text">Review the shopping lists assigned to you</t>
+                <t t-set="url" t-value="'/my/supermarket-lists'"/>
+                <t t-set="placeholder_count" t-value="'supermarket_list_count'"/>
+                <t t-set="show_count" t-value="True"/>
+                <t t-set="config_card" t-value="True"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_supermarket_lists" name="My Supermarket Lists">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Supermarket Lists</t>
+            </t>
+            <t t-if="error_message">
+                <div class="alert alert-danger" role="alert">
+                    <p class="mb-0" t-esc="error_message"/>
+                </div>
+            </t>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="/my/supermarket-lists/create" method="post" class="row g-2 align-items-center">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="col-12 col-md-8">
+                            <input type="text" name="name" class="form-control" placeholder="List name" required="required"/>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button type="submit" class="btn btn-primary w-100">Create List</button>
+                        </div>
+                        <div class="col-12">
+                            <small class="text-muted">The list will be assigned to your user.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <t t-if="not lists">
+                <div class="alert alert-warning" role="alert">
+                    <p class="mb-0">There are no supermarket lists linked to your account.</p>
+                </div>
+            </t>
+            <t t-else="" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>List</th>
+                        <th class="text-end">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="lists" t-as="list_record">
+                        <tr>
+                            <td>
+                                <a t-attf-href="/my/supermarket-lists/{{ list_record.id }}">
+                                    <t t-esc="list_record.name"/>
+                                </a>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="list_record.state"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_supermarket_list_detail" name="Supermarket List Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title" t-value="list_record.name"/>
+            </t>
+            <t t-if="error_message">
+                <div class="alert alert-danger" role="alert">
+                    <p class="mb-0" t-esc="error_message"/>
+                </div>
+            </t>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <form t-if="list_record.state == 'draft'" t-attf-action="/my/supermarket-lists/{{ list_record.id }}/start" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <button type="submit" class="btn btn-primary">Start</button>
+                </form>
+                <form t-if="list_record.state == 'in_progress'" t-attf-action="/my/supermarket-lists/{{ list_record.id }}/done" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <button type="submit" class="btn btn-success">Mark Done</button>
+                </form>
+            </div>
+            <div class="mb-3 d-flex flex-wrap gap-3">
+                <div>
+                    <strong>Responsible:</strong>
+                    <span t-esc="list_record.responsible_id.name"/>
+                </div>
+                <div>
+                    <strong>Status:</strong>
+                    <span t-field="list_record.state"/>
+                </div>
+            </div>
+            <t t-if="list_record.state != 'done'">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form t-attf-action="/my/supermarket-lists/{{ list_record.id }}/add-item" method="post" class="row g-2 align-items-center">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="col-12 col-md-6">
+                                <input type="text" name="product_name" class="form-control" placeholder="Item name" required="required"/>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input type="number" name="quantity" class="form-control" step="0.01" min="0.01" value="1"/>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="submit" class="btn btn-outline-primary w-100">Add Item</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </t>
+            <t t-if="not list_record.line_ids">
+                <div class="alert alert-warning" role="alert">
+                    <p class="mb-0">This list has no items yet.</p>
+                </div>
+            </t>
+            <t t-else="" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-end">Quantity</th>
+                        <th class="text-end">Purchased</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="list_record.line_ids" t-as="line">
+                        <tr>
+                            <td>
+                                <t t-esc="line.product_name"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="line.quantity"/>
+                            </td>
+                            <td class="text-end">
+                                <span t-if="line.is_purchased" class="badge text-bg-success">Purchased</span>
+                                <span t-else="" class="badge text-bg-secondary">Pending</span>
+                            </td>
+                            <td class="text-end">
+                                <t t-if="list_record.state != 'done'">
+                                    <form action="/my/supermarket-lists/line/toggle" method="post" class="d-inline">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="line_id" t-att-value="line.id"/>
+                                        <input type="hidden" name="is_purchased" t-att-value="0 if line.is_purchased else 1"/>
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                            <t t-if="line.is_purchased">Mark Pending</t>
+                                            <t t-else="">Mark Purchased</t>
+                                        </button>
+                                    </form>
+                                </t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_docs_entry_supermarket_icon_size" inherit_id="portal.portal_docs_entry">
+        <xpath expr="//div[hasclass('o_portal_icon')]/img" position="attributes">
+            <attribute name="t-att-style">
+                "max-width: 64px; max-height: 64px; width: 64px; height: 64px; object-fit: contain;" if icon == "/supermarket_list/static/description/icon.png" else False
+            </attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="supermarket_list_demo_weekly" model="supermarket.list">
+        <field name="name">Weekly Groceries</field>
+        <field name="responsible_id" ref="base.user_demo"/>
+        <field name="state">in_progress</field>
+    </record>
+    <record id="supermarket_list_demo_weekly_milk" model="supermarket.list.line">
+        <field name="list_id" ref="supermarket_list_demo_weekly"/>
+        <field name="product_name">Milk</field>
+        <field name="quantity">2</field>
+        <field name="is_purchased">0</field>
+    </record>
+    <record id="supermarket_list_demo_weekly_bread" model="supermarket.list.line">
+        <field name="list_id" ref="supermarket_list_demo_weekly"/>
+        <field name="product_name">Bread</field>
+        <field name="quantity">1</field>
+        <field name="is_purchased">1</field>
+    </record>
+
+    <record id="supermarket_list_demo_party" model="supermarket.list">
+        <field name="name">Party Supplies</field>
+        <field name="responsible_id" ref="base.user_demo"/>
+        <field name="state">draft</field>
+    </record>
+    <record id="supermarket_list_demo_party_snacks" model="supermarket.list.line">
+        <field name="list_id" ref="supermarket_list_demo_party"/>
+        <field name="product_name">Snacks</field>
+        <field name="quantity">3</field>
+        <field name="is_purchased">0</field>
+    </record>
+    <record id="supermarket_list_demo_party_soda" model="supermarket.list.line">
+        <field name="list_id" ref="supermarket_list_demo_party"/>
+        <field name="product_name">Soda</field>
+        <field name="quantity">6</field>
+        <field name="is_purchased">0</field>
+    </record>
+</odoo>
