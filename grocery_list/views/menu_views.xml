@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_grocery_list_root" name="Listas de Supermercado" sequence="100"/>
+    <menuitem id="menu_grocery_list" name="Listas" parent="menu_grocery_list_root" action="action_grocery_list" sequence="10"/>
+    <menuitem id="menu_grocery_list_item" name="Items" parent="menu_grocery_list_root" action="action_grocery_list_item" sequence="20"/>
+</odoo>
+

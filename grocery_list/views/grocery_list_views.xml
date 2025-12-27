@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_grocery_list_list" model="ir.ui.view">
+        <field name="name">grocery.list.list</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="state" widget="badge" decoration-success="state == 'completed'" decoration-info="state == 'in_progress'"/>
+                <field name="items_count"/>
+                <field name="items_purchased_count"/>
+                <field name="progress_percentage" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_grocery_list_form" model="ir.ui.view">
+        <field name="name">grocery.list.form</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_draft" string="Borrador" type="object" invisible="state == 'draft'"/>
+                    <button name="action_set_in_progress" string="En Progreso" type="object" invisible="state == 'in_progress'"/>
+                    <button name="action_set_completed" string="Completada" type="object" invisible="state == 'completed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="items_count"/>
+                            <field name="items_purchased_count"/>
+                            <field name="progress_percentage" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="item_ids" nolabel="1">
+                                <list editable="bottom" decoration-success="is_purchased == True" decoration-muted="is_purchased == True">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="is_purchased" widget="boolean_toggle" readonly="not can_edit_purchased"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_grocery_list_search" model="ir.ui.view">
+        <field name="name">grocery.list.search</field>
+        <field name="model">grocery.list</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <filter string="Borrador" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="En Progreso" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Completada" name="completed" domain="[('state', '=', 'completed')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Estado" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="Responsable" name="group_by_responsible" context="{'group_by': 'responsible_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_grocery_list" model="ir.actions.act_window">
+        <field name="name">Listas de Supermercado</field>
+        <field name="res_model">grocery.list</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_grocery_list_search"/>
+    </record>
+</odoo>
+
