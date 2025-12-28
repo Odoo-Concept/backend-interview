@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_grocery_root"
+              name="Grocery Lists"
+              web_icon="grocery_app,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Main Menu Items -->
+    <menuitem id="menu_grocery_list_main"
+              name="Lists"
+              parent="menu_grocery_root"
+              sequence="10"/>
+
+    <!-- Grocery Lists Menu -->
+    <menuitem id="menu_grocery_list"
+              name="Grocery Lists"
+              parent="menu_grocery_list_main"
+              action="action_grocery_list"
+              sequence="10"/>
+
+</odoo>

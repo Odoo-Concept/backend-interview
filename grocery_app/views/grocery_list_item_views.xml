@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_grocery_list_item_list" model="ir.ui.view">
+        <field name="name">grocery.list.item.list</field>
+        <field name="model">grocery.list.item</field>
+        <field name="arch" type="xml">
+            <list string="Grocery List Items"
+                  decoration-muted="purchased == True"
+                  decoration-danger="purchased == False">
+                <field name="sequence" widget="handle"/>
+                <field name="list_id"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="uom_id"/>
+                <field name="purchased" widget="boolean_toggle"/>
+                <field name="responsible_user_id"/>
+                <field name="list_status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_grocery_list_item_form" model="ir.ui.view">
+        <field name="name">grocery.list.item.form</field>
+        <field name="model">grocery.list.item</field>
+        <field name="arch" type="xml">
+            <form string="Grocery List Item">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="list_id" options="{'no_create': True}"/>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="uom_id"/>
+                        </group>
+                        <group>
+                            <field name="purchased" widget="boolean_toggle"
+                                   readonly="responsible_user_id != uid"/>
+                            <field name="responsible_user_id" readonly="1"/>
+                            <field name="list_status" readonly="1"/>
+                            <field name="sequence"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_grocery_list_item_search" model="ir.ui.view">
+        <field name="name">grocery.list.item.search</field>
+        <field name="model">grocery.list.item</field>
+        <field name="arch" type="xml">
+            <search string="Search Grocery List Items">
+                <field name="product_id"/>
+                <field name="list_id"/>
+                <field name="responsible_user_id"/>
+                <filter string="Purchased"
+                        name="purchased"
+                        domain="[('purchased', '=', True)]"/>
+                <filter string="Not Purchased"
+                        name="not_purchased"
+                        domain="[('purchased', '=', False)]"/>
+                <separator/>
+                <filter string="My Items"
+                        name="my_items"
+                        domain="[('responsible_user_id', '=', uid)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Grocery List"
+                            name="group_list"
+                            context="{'group_by': 'list_id'}"/>
+                    <filter string="Product"
+                            name="group_product"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter string="Purchased Status"
+                            name="group_purchased"
+                            context="{'group_by': 'purchased'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_grocery_list_item" model="ir.actions.act_window">
+        <field name="name">Grocery List Items</field>
+        <field name="res_model">grocery.list.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_my_items': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No items found
+            </p>
+            <p>
+                Items are typically added from within a grocery list.
+            </p>
+        </field>
+    </record>
+
+</odoo>
