@@ -1,0 +1,54 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:0.25" />
+    </linearGradient>
+    <linearGradient id="cartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#66BB6A" />
+      <stop offset="100%" style="stop-color:#4CAF50" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="58" fill="url(#bgGradient)"/>
+  
+  <!-- Shopping cart body -->
+  <path d="M 28 48 L 28 88 Q 28 94 34 94 L 86 94 Q 92 94 92 88 L 92 48 Z" 
+        fill="url(#cartGradient)" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+  
+  <!-- Cart top rim -->
+  <path d="M 24 48 L 24 38 Q 24 32 30 32 L 90 32 Q 96 32 96 38 L 96 48" 
+        fill="url(#cartGradient)" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Cart wheels -->
+  <circle cx="38" cy="94" r="5" fill="#2E7D32" opacity="0.6"/>
+  <circle cx="82" cy="94" r="5" fill="#2E7D32" opacity="0.6"/>
+  
+  <!-- Items in cart (groceries) -->
+  <ellipse cx="42" cy="65" rx="5" ry="8" fill="#FFC107" opacity="0.9"/>
+  <ellipse cx="58" cy="70" rx="5" ry="8" fill="#FF9800" opacity="0.9"/>
+  <ellipse cx="74" cy="65" rx="5" ry="8" fill="#FF5722" opacity="0.9"/>
+  
+  <!-- Shopping list clipboard -->
+  <rect x="68" y="18" width="38" height="48" rx="4" 
+        fill="white" stroke="#4CAF50" stroke-width="3" opacity="0.95"/>
+  
+  <!-- List lines -->
+  <line x1="74" y1="28" x2="100" y2="28" stroke="#81C784" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="74" y1="38" x2="100" y2="38" stroke="#81C784" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="74" y1="48" x2="98" y2="48" stroke="#81C784" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="74" y1="58" x2="96" y2="58" stroke="#81C784" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- Checkmarks on list -->
+  <path d="M 76 28 L 79 31 L 84 26" 
+        fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 76 38 L 79 41 L 84 36" 
+        fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Clipboard clip -->
+  <path d="M 84 18 Q 84 12 90 12 Q 96 12 96 18" 
+        fill="none" stroke="#4CAF50" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="88" y="12" width="6" height="8" rx="1" fill="#4CAF50" opacity="0.3"/>
+</svg>
